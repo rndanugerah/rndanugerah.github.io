@@ -107,6 +107,21 @@ section{
     line-height: 1.3;
 }
 
+.topline{
+    display: block;
+    position: relative;
+    color: var(--text-color);
+}
+
+.topline::after{
+    position: absolute;
+    content: '';
+    height: 3px;
+    width: 30px;
+    bottom: 7px;
+    background-color:var(--main-color);
+}
+
 span{
     color: var(--main-color);
 }
