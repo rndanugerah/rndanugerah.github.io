@@ -32,17 +32,45 @@ b{
     color: var(--main-color);
 }
 
+.navbar{
+    display: flex;
+}
+
 .navbar a{
     font-size: 1.7rem;
     color: var(--text-color);
     font-weight: 500;
     margin-left: 3.5rem;
     transition: 1s;
+    position: relative;
 }
 
-.navbar a:hover, .navbar a.active{
+.navbar a:hover + .bubble, .navbar a.active{
     color: var(--main-color);
+    display: block;
 }
+
+.navbar .bubble {
+    display: none;
+    color: var(--main-color);
+    position: absolute;
+    top: 100%;
+    left: 65%;
+    transform: translateX(100%);
+    padding: 8px 16px;
+    background-color: var(--text-color);
+    border-radius: 4px;
+  }
+  
+.navbar .bubble::after {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    border: 10px solid transparent;
+    border-bottom-color: white;
+    transform: translateX(-50%);
+  }
 
 .modal{
     display: none;
@@ -214,10 +242,11 @@ span{
     transition: 0.5 ease;
 }
 
-.home-sci a:hover{
+.home-sci a:hover {
     color: var(--main-color);
     box-shadow: 0 0 1rem var(--main-color);
 }
+
 
 .profile-pic img{
     width: 30vw;

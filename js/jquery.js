@@ -22,7 +22,6 @@ function setActiveLink() {
 }
 
 window.onscroll = () => {
-
   window.addEventListener('scroll', setActiveLink);
   // sticky header
   let header = document.querySelector('header')
