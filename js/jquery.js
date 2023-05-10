@@ -43,10 +43,13 @@ $(function() {
   $("#skillsSection").load("sections/skills.html");
 });
 
-
 //portfolio section
 $(function() {
   $("#portfolioSection").load("sections/portfolio.html");
 });
 
+//contact section
+$(function() {
+  $("#contactSection").load("sections/contact.html");
+});
 

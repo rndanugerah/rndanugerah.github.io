@@ -19,6 +19,10 @@
     cursor: pointer;
 }
 
+.logo:hover{
+    color: var(--text-color);;
+}
+
 b{
     color: var(--main-color);
 }
@@ -185,8 +189,8 @@ span{
 
 .home-sci{
     position: absolute;
-    bottom: 4rem;
-    width: 100px;
+    bottom: 2rem;
+    width: 200px;
     display: flex;
     justify-content: space-between;
 }
@@ -244,4 +248,17 @@ span{
         transform: translateY(0);
     }
 }
+
+.footer{
+    padding: 2rem;
+    text-align: center;
+    font-size: 1rem;
+    background:var(--second-bg-color);
+}
+
+.footer hr{
+    margin: 1rem;
+    border-bottom: medium solid var(--text-color);
+}
+
 
