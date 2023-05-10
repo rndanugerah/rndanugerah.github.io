@@ -58,7 +58,7 @@ b{
     left: 65%;
     transform: translateX(100%);
     padding: 8px 16px;
-    background-color: var(--text-color);
+    background-color: #333;
     border-radius: 4px;
   }
   
@@ -68,7 +68,7 @@ b{
     top: -20px;
     left: 50%;
     border: 10px solid transparent;
-    border-bottom-color: white;
+    border-bottom-color: #333;
     transform: translateX(-50%);
   }
 
@@ -247,6 +247,35 @@ span{
     box-shadow: 0 0 1rem var(--main-color);
 }
 
+.home-sci a .bubble{
+    display: none;
+    width: 6rem;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    color: var(--main-color);
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+    background-color: #333;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.home-sci a:hover .bubble{
+    display: block;
+}
+
+.home-sci a .bubble::after{
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    border: 10px solid transparent;
+    border-top-color: #333;
+    transform: translateX(-50%);
+}
 
 .profile-pic img{
     width: 30vw;
