@@ -10,6 +10,11 @@
     display: flex;
     justify-content: space-between;
     z-index: 100;
+    transition: .3s;
+}
+
+.header.sticky{
+    background: var(--bg-color);
 }
 
 .logo{
@@ -32,7 +37,7 @@ b{
     color: var(--text-color);
     font-weight: 500;
     margin-left: 3.5rem;
-    transition: 1.5s;
+    transition: 1s;
 }
 
 .navbar a:hover, .navbar a.active{
