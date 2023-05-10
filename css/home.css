@@ -16,6 +16,11 @@
     font-size: 2.5rem;
     color: var(--text-color);
     font-weight: 600;
+    cursor: pointer;
+}
+
+b{
+    color: var(--main-color);
 }
 
 .navbar a{

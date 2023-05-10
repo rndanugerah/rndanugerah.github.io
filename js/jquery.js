@@ -38,9 +38,15 @@ $(function() {
   $("#aboutSection").load("sections/about.html");
 });
 
-//about section
+//skills section
 $(function() {
   $("#skillsSection").load("sections/skills.html");
+});
+
+
+//portfolio section
+$(function() {
+  $("#portfolioSection").load("sections/portfolio.html");
 });
 
 
