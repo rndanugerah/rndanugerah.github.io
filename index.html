@@ -11,11 +11,32 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 </head>
-<body>
-    <div class="homepage-container">
+<body data-barba="wrapper">
+    <div class="loading-container" id="loading-container">
+       <div class="loading-screen">
+            <div class="loading-words">
+                <h2 class="home-active home-active-first">Selamat Datang !<div class="dot"></div></h2>
+                <h2 class="home-active">مرحباً<div class="dot"></div></h2>
+                <h2 class="home-active">Aloha<div class="dot"></div></h2>
+                <h2 class="home-active">Namaste<div class="dot"></div></h2>
+                <h2 class="home-active">いらっしゃいませ<div class="dot"></div></h2>
+                <h2 class="home-active">Privet<div class="dot"></div></h2>
+                <h2 class="home-active">Xin chao<div class="dot"></div></h2>
+                <h2 class="home-active">BENVENUTO<div class="dot"></div></h2>
+                <h2 class="home-active">欢迎<div class="dot"></div></h2>
+                <h2 class="home-active">Sugeng rawuh<div class="dot"></div></h2>
+                <h2 class="home-active">ДОБРО ПОЖАЛОВАТЬ<div class="dot"></div></h2>
+                <h2 class="home-active-last">Welcome !<div class="dot"></div></h2>
+            </div>
+            <div class="rounded-div-wrap bottom">
+                <div class="rounded-div"></div>
+            </div>
+       </div>
+    </div>
 
-        <!--Header Design-->
-        <header class="header">
+    <div class="homepage-container">
+         <!--Header Design-->
+         <header class="header">
             <a href="index.html" class="logo">Randy<b>.</b></a>
 
             <nav class="navbar">
@@ -28,7 +49,7 @@
             </nav>
 
         </header>
-
+        
         <!-- Home Design --> 
         <section class="home" id="home">
             <div class="home-content">
@@ -40,12 +61,13 @@
                 <div class="btn-box">
                     <a href="#contact" class="btn">Let's Talk</a>
                 </div>
-            </div>
-            <div class="home-sci">
-                <a href="https://www.linkedin.com/in/mrandyanugerah/"><i class='bx bxl-linkedin'></i></a>
-                <a href="https://github.com/rndanugerah"><i class='bx bxl-github' ></i></a>
-                <a href="#"><i class='bx bxl-facebook'></i></i><span class="bubble">Don't have</span></a>
-                <a href="#"><i class='bx bxl-twitter' ></i></i><span class="bubble">Don't have</span></a>
+
+                <div class="home-sci">
+                    <a href="https://www.linkedin.com/in/mrandyanugerah/"><i class='bx bxl-linkedin'></i><span class="bubble">LinkedIn</span></a>
+                    <a href="https://github.com/rndanugerah"><i class='bx bxl-github' ></i><span class="bubble">Github</span></a>
+                    <a href="#"><i class='bx bxl-facebook'></i><span class="bubble">Don't have</span></a>
+                    <a href="#"><i class='bx bxl-twitter' ></i><span class="bubble">Don't have</span></a>
+                </div>
             </div>
             <div class="profile-pic">
                 <img src="images/landingpageprofile.png" alt="profile" srcset="">
@@ -59,7 +81,7 @@
         <div id="portfolioSection"></div>
         <div id="contactSection"></div>
         
-         <!-- footer design -->
+        <!-- footer design -->
         <Footer class="footer">
             <div class="footer-icontop">
                 <a href="#"><i class='bx bxs-up-arrow-alt'></i></a>
@@ -69,6 +91,7 @@
                 <p>Copyright &copy; 2023 MRandyAnugerah
                     <br> All Right Reserved.
                 </p>
+                <span id="timeSpan"></span>
             </div>
         </Footer>
     </div>
@@ -94,11 +117,19 @@
             </div>
         </div> 
     </div>
+
+    <main class="main" data-barba="container" data-barba-namespace="home"><div class="main" data-scroll-container></div></main>
     
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+
+    <script src="js/locomotive-scroll.min.js"></script>
+    <script defer src="js/index.js"></script>
 </body>
 </html>
