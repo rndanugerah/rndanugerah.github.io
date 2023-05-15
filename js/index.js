@@ -94,7 +94,7 @@ function initLoaderHome() {
   tl.to(".loading-words .home-active", {
 		duration: .01,
 		opacity: 1,
-    stagger: .25,
+    stagger: .20,
     ease: "none",
     onStart: homeActive
   },"=-.4");
@@ -103,23 +103,23 @@ function initLoaderHome() {
     gsap.to(".loading-words .home-active", {
       duration: .01,
       opacity: 0,
-      stagger: .25,
+      stagger: .20,
       ease: "none",
-      delay: .25
+      delay: .20
     });
   }
 
   tl.to(".loading-words .home-active-last", {
 		duration: .01,
 		opacity: 1,
-    delay: .25
+    delay: .20
   });
   
 	tl.to(".loading-screen", {
 		duration: .8,
 		top: "-100%",
 		ease: "Power4.easeInOut",
-    delay: .80
+    delay: .70
   });
 
   tl.to(".loading-screen .rounded-div-wrap.bottom", {
@@ -244,31 +244,19 @@ var typed = new Typed ('#text-animate', {
     loop: true
 });
 
-// modal section
-var modal = document.getElementById('modalContact');
+$('.copy_text').click(function (e) {
+  e.preventDefault();
+  var copyText = $(this).attr('href');
 
-// Get the link that opens the modal
-var link = document.getElementById('modalContact');
+  document.addEventListener('copy', function(e) {
+     e.clipboardData.setData('text/plain', copyText);
+     e.preventDefault();
+  }, true);
 
-// Get the <span> element that closes the modal
-var close = document.getElementsByClassName('close')[0];
-
-// When the user clicks the link, open the modal
-link.onclick = function() {
-  modal.style.display = 'block';
-}
-
-// When the user clicks on <span> (x), close the modal
-close.onclick = function() {
-  modal.style.display = 'none';
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = 'none';
-  }
-}
+  document.execCommand('copy');  
+  console.log('copied text : ', copyText);
+  alert('copied text: ' + copyText); 
+});
 
 //about section
 $(function() {
