@@ -263,14 +263,9 @@ $(function() {
   $('#aboutSection').load('sections/about.html');
 });
 
-//skills section
-$(function() {
-  $('#skillsSection').load('sections/skills.html');
-});
-
 //portfolio section
 $(function() {
-  $('#portfolioSection').load('sections/portfolio.html');
+  $('#projectsSection').load('sections/projects.html');
 });
 
 //contact section
@@ -301,3 +296,4 @@ function initTimeZone() {
   }
 
 }
+
