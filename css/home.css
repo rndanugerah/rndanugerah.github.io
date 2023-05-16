@@ -1,4 +1,32 @@
-@import "style.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300; 400; 500; 600; 700; 800; 900 display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none !important;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', 'sans-serif';
+}
+
+:root{
+    --bg-color:#081b29;
+    --second-bg-color:#112e42;
+    --text-color:#ededed;
+    --main-color:#00abf0;
+}
+
+html{
+    font-size: 70%;
+    overflow-x: hidden;
+}
+
+body .homepage-container{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
 
 .loading-container {
    position: fixed;
@@ -155,76 +183,6 @@ b{
     margin-left: 3.5rem;
     transition: 1s;
     position: relative;
-}
-
-.navbar a:hover + .bubble, .navbar a.active{
-    color: var(--main-color);
-    display: block;
-}
-
-.navbar .bubble {
-    display: none;
-    color: var(--main-color);
-    position: absolute;
-    top: 100%;
-    left: 65%;
-    transform: translateX(100%);
-    padding: 8px 16px;
-    background-color: #333;
-    border-radius: 4px;
-  }
-  
-.navbar .bubble::after {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    border: 10px solid transparent;
-    border-bottom-color: #333;
-    transform: translateX(-50%);
-  }
-
-.modal{
-    display: none;
-    position: fixed;
-    z-index: 0;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-}
-  
-.modal-content{
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.modal-title{
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-.modal-body{
-    font-size: 1.2rem;
-}
-  
-.close{
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-  
-.close:hover,
-.close:focus{
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
 }
 
 #menu-icon{
@@ -453,5 +411,72 @@ span{
     display: none;
 }
 .element::-webkit-scrollbar { width: 0 !important }
+
+@media (max-width: 1200px){
+    html{
+        font-size: 55%;
+    }
+}
+
+@media (max-width: 991px){
+    .header{
+        padding: 2rem 4%;
+    }
+
+    .home img{
+        width: 30vw;
+    }
+
+    .section {
+        padding: 10rem 4% 2rem;
+    }
+
+    .home{
+        padding: 0 4%;
+    }
+
+    .footer{
+        padding: 2rem 4%;
+    }
+}
+
+@media (max-width: 768px){
+    .navbar{
+        display: none !important;
+    }
+
+    .home{
+        flex-direction: column;
+        padding: 0 9%;
+    }
+
+    .home-content{
+        margin:auto;
+        max-width: 70rem;
+    }
+
+    .home img{
+        display: none;
+    }
+}
+
+@media (max-width: 360px){
+    html{
+        font-size: 35%;
+    }
+
+    .home .home-sci{
+        position: absolute;
+        bottom: 2rem;
+        width: 50px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-box .btn{
+        font-size: 1.5rem;
+    }
+}
+
 
 

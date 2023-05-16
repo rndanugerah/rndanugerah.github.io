@@ -1,4 +1,4 @@
-@import "style.css";
+@import "css/style.css";
 
 .projects{
     background:#e6e6e6;
@@ -101,3 +101,9 @@
 .projects a:hover .bubble{
     display: block;
 }
+
+@media (max-width: 620px){
+    .projects-items{
+        grid-template-columns: repeat(1,1fr);
+    }
+} 

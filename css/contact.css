@@ -66,3 +66,10 @@
 }
 
 
+@media (max-width: 360px){
+    .contact form .btn-box.btns .btn{
+        font-size: 1.5rem;
+    }
+}
+
+
