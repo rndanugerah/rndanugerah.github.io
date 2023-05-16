@@ -438,6 +438,10 @@ span{
 }
 
 @media (max-width: 768px){
+    .loading-container .dot {
+        display: none;
+     }
+
     .navbar{
         display: none !important;
     }
