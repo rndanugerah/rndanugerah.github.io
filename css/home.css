@@ -459,6 +459,15 @@ span{
     .home img{
         display: none;
     }
+
+    .home .home-sci{
+        position: absolute;
+        bottom: 10px;
+    }
+
+    .profileHover:hover{
+        display: none;
+    }
 }
 
 @media (max-width: 360px){
