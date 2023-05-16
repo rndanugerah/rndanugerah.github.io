@@ -15,7 +15,7 @@
     content: '';
     position: absolute;
     width: 0.1rem;
-    height: 118%;
+    height: 100%;
     top: 6rem;
     background: var(--bg-color);
     margin-left: 95px;
@@ -30,6 +30,7 @@
 
 .sub-heading{
     margin: 0.5rem 0 1rem 0;
+    font-weight: bold;
 }
 
 .education-box{
