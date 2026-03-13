@@ -1,299 +1,242 @@
-const selectAll = (e) => document.querySelectorAll(e);
-
-initPageTransitions();
+let scroll;
 
 function initPageTransitions() {
-  barba.init({sync: true, debug: false, timeout:7000, transitions: [{
-      name: 'default',
-      once(data) {
-        // do something once on the initial page load
-        initSmoothScroll(data.next.container);
-        initTimeZone();
-        initLoader();
-      },
-    }, 
-    {
-      name: 'to-home',
-      from: {
-      },
-      to: {
-        namespace: ['home']
-      },
-      once(data) {
-        // do something once on the initial page load
-        initSmoothScroll(data.next.container);
-        initTimeZone();
-        initLoaderHome();
-      },
-    }]
-  });
+    // Start loader animation
+    initLoader();
 
-  // Animation - First Page Load
-function initLoaderHome() { 
-
-  var tl = gsap.timeline();
-
-	tl.set(".loading-screen", { 
-		top: "0",
-	});	
-
-  if ($(window).width() > 540) { 
-    tl.set("main .once-in", {
-      y: "50vh"
-    });
-  } else {
-    tl.set("main .once-in", {
-      y: "10vh"
-    });
-  }
-
-  tl.set(".loading-words", { 
-		opacity: 0,
-    y: -50
-	});
-
-  tl.set(".loading-words .active", { 
-		display: "none",
-	});
-
-  tl.set(".loading-words .home-active, .loading-words .home-active-last", { 
-		display: "block",
-    opacity: 0
-	});
-
-  tl.set(".loading-words .home-active-first", { 
-		opacity: 1,
-	});
-
-  if ($(window).width() > 540) { 
-    tl.set(".loading-screen .rounded-div-wrap.bottom", { 
-      height: "10vh",
-    });	
-  } else {
-    tl.set(".loading-screen .rounded-div-wrap.bottom", { 
-      height: "5vh",
-    });	
-  }
-
-  tl.set("html", { 
-		cursor: "wait"
-	});
-
-  tl.call(function() {
-    scroll.stop();
-  });
-
-  tl.to(".loading-words", {
-		duration: .8,
-		opacity: 1,
-    y: -50,
-    ease: "Power4.easeOut",
-    delay: .5
-	});
-
-  tl.to(".loading-words .home-active", {
-		duration: .01,
-		opacity: 1,
-    stagger: .20,
-    ease: "none",
-    onStart: homeActive
-  },"=-.4");
-
-  function homeActive() {
-    gsap.to(".loading-words .home-active", {
-      duration: .01,
-      opacity: 0,
-      stagger: .20,
-      ease: "none",
-      delay: .20
-    });
-  }
-
-  tl.to(".loading-words .home-active-last", {
-		duration: .01,
-		opacity: 1,
-    delay: .20
-  });
-  
-	tl.to(".loading-screen", {
-		duration: .8,
-		top: "-100%",
-		ease: "Power4.easeInOut",
-    delay: .70
-  });
-
-  tl.to(".loading-screen .rounded-div-wrap.bottom", {
-		duration: 1.5,
-		height: "0vh",
-		ease: "Power4.easeInOut"
-	},"=-.8");
-  
+    // Time
+    initTimeZone();
 }
 
-// Animation - Page transition Out
-function pageTransitionOut() {
-	var tl = gsap.timeline();
+function initLoader() {
+    var tl = gsap.timeline();
 
-  if ($(window).width() > 540) { 
-    tl.set("main .once-in", {
-      y: "50vh",
+    tl.set(".loading-screen", { top: "0" });
+    tl.set("html", { cursor: "wait" });
+
+    // Stagger text
+    const words = document.querySelectorAll('.loading-words h2');
+    tl.set(words, { opacity: 0 });
+
+    words.forEach((word, index) => {
+        // Only don't fade out the very last word immediately if we want it to stay a bit
+        let isLast = index === words.length - 1;
+
+        tl.to(word, {
+            opacity: 1,
+            duration: 0.05
+        }, index * 0.15)
+            .to(word, {
+                opacity: 0,
+                duration: 0.05
+            }, (index * 0.15) + (isLast ? 0.3 : 0.1));
     });
-  } else {
-    tl.set("main .once-in", {
-      y: "20vh"
-    });
-  }
-  
-  tl.call(function() {
-    scroll.start();
-  });
 
-  tl.to("main .once-in", {
-    duration: 1,
-    y: "0vh",
-    stagger: .05,
-    ease: "Expo.easeOut",
-    delay: .8,
-    clearProps: "true"
-  });
+    // Reveal main page
+    tl.to(".loading-screen", {
+        duration: 1,
+        yPercent: -100,
+        ease: "power4.inOut",
+    }, "+=0.3");
 
+    // Retract the curved path bottom div
+    tl.to(".loading-screen .rounded-div-wrap.bottom", {
+        duration: 1,
+        height: "0vh",
+        ease: "power4.inOut",
+    }, "-=1");
+
+    tl.set(".loading-container", { display: "none" });
+
+    // Initiate locomotive scroll and page animations
+    tl.call(function () {
+        initLocomotiveScroll();
+        animateHome();
+        initCursor();
+        initMagneticButtons();
+        $("html").css("cursor", "none"); // reset cursor
+    }, null, "-=0.8");
 }
 
-  function initSmoothScroll(container) {
+function animateHome() {
+    gsap.to(".hero-title .word", {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 1.2,
+        stagger: 0.1,
+        ease: "power4.out",
+        delay: 0.2
+    });
+
+    gsap.to(".hero-roles-wrapper", {
+        opacity: 1,
+        duration: 1,
+        delay: 0.8
+    });
+
+    initRoleSelector();
+}
+
+function initRoleSelector() {
+    const roles = document.querySelectorAll(".role-item");
+    const box = document.querySelector(".role-selector-box");
+    if (!box || roles.length === 0) return;
+
+    let currentIndex = 0;
+
+    function moveBox(target) {
+        const roleRect = target.getBoundingClientRect();
+        const parentRect = target.parentElement.getBoundingClientRect();
+
+        box.style.width = `${roleRect.width + 10}px`;
+        box.style.height = `${roleRect.height + 10}px`;
+        box.style.transform = `translate(${roleRect.left - parentRect.left - 5}px, ${roleRect.top - parentRect.top - 5}px)`;
+    }
+
+    // Initialize box position on first active element
+    setTimeout(() => moveBox(roles[0]), 100);
+
+    // Click to select
+    roles.forEach((role, i) => {
+        // Handle Hover/Click
+        role.addEventListener('mouseenter', () => {
+            if (window.innerWidth > 768) {
+                roles.forEach(r => r.classList.remove('active'));
+                role.classList.add('active');
+                moveBox(role);
+                currentIndex = i;
+            }
+        });
+        role.addEventListener('click', () => {
+            roles.forEach(r => r.classList.remove('active'));
+            role.classList.add('active');
+            moveBox(role);
+            currentIndex = i;
+        });
+    });
+
+    // Handle Resize
+    window.addEventListener('resize', () => {
+        moveBox(roles[currentIndex]);
+    });
+}
+
+function initLocomotiveScroll() {
+    const scrollContainer = document.querySelector('[data-scroll-container]');
 
     scroll = new LocomotiveScroll({
-      el: container.querySelector('[data-scroll-container]'),
-      smooth: true,
+        el: scrollContainer,
+        smooth: true,
+        multiplier: 1,
+        class: 'is-reveal'
     });
 
-    window.onresize = scroll.update();
+    // Update ScrollTrigger when LocomotiveScroll updates
+    scroll.on("scroll", ScrollTrigger.update);
 
-    scroll.on("scroll", () => ScrollTrigger.update());
-
-    ScrollTrigger.scrollerProxy('[data-scroll-container]', {
-      scrollTop(value) {
-        return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
-      }, // we don't have to define a scrollLeft because we're only scrolling vertically.
-      getBoundingClientRect() {
-        return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-      },
-      // LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
-      pinType: container.querySelector('[data-scroll-container]').style.transform ? "transform" : "fixed"
+    // Proxy LocomotiveScroll methods to ScrollTrigger
+    ScrollTrigger.scrollerProxy(scrollContainer, {
+        scrollTop(value) {
+            return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
+        },
+        getBoundingClientRect() {
+            return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        },
+        pinType: scrollContainer.style.transform ? "transform" : "fixed"
     });
 
-    ScrollTrigger.defaults({
-      scroller: document.querySelector('[data-scroll-container]'),
-    });
-
-    const scrollbar = selectAll('.c-scrollbar');
-
-    if(scrollbar.length > 1) {
-      scrollbar[0].remove();
-    }
-
-    // each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll. 
-    ScrollTrigger.addEventListener('refresh', () => scroll.update());
-
-    // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
+    // Refresh after setup
+    ScrollTrigger.addEventListener("refresh", () => scroll.update());
     ScrollTrigger.refresh();
-  }  
 }
 
-function initNextWord(data) {
-  let parser = new DOMParser();
-  let dom = parser.parseFromString(data.next.html, 'text/html');
-  let nextProjects = dom.querySelector('.loading-words');
-  document.querySelector('.loading-words').innerHTML = nextProjects.innerHTML;
-}
+function initCursor() {
+    const cursor = document.querySelector('.cursor');
+    const follower = document.querySelector('.cursor-follower');
 
-// scroll section
-function setActiveLink() {
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('header nav a');
+    // Only init if not touch device
+    if (window.innerWidth > 768) {
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1,
+                ease: "power2.out"
+            });
+            gsap.to(follower, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    const sectionId = section.getAttribute('id');
-
-    if (pageYOffset >= sectionTop - sectionHeight / 3) {
-      navLinks.forEach((link) => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${sectionId}`) {
-          link.classList.add('active');
-        }
-      });
+        const hoverElements = document.querySelectorAll('a, button, [data-magnetic]');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hover');
+            });
+        });
     }
-  });
 }
 
-window.onscroll = () => {
-  window.addEventListener('scroll', setActiveLink);
-  // sticky header
-  let header = document.querySelector('header')
+function initMagneticButtons() {
+    const magnetics = document.querySelectorAll('.magnetic');
 
-  header.classList.toggle('sticky', window.scrollY > 100);
-};
+    magnetics.forEach(btn => {
+        btn.addEventListener('mousemove', function (e) {
+            const position = btn.getBoundingClientRect();
+            const x = e.pageX - position.left - position.width / 2;
+            const y = e.pageY - position.top - position.height / 2;
 
-// typing animation
-var typed = new Typed ('#text-animate', {
-    strings: ['Software Developer/Engineer', 'Web Programmer', 'Backend Programmer', 'Machine Learning Enthusiast'],
-    backSpeed: 100,
-    typeSpeed: 100,
-    backDelay: 600,
-    loop: true
-});
+            gsap.to(btn, {
+                x: x * 0.3,
+                y: y * 0.3,
+                duration: 0.5,
+                ease: "power2.out"
+            });
+        });
 
-$('.copy_text').click(function (e) {
-  e.preventDefault();
-  var copyText = $(this).attr('href');
-
-  document.addEventListener('copy', function(e) {
-     e.clipboardData.setData('text/plain', copyText);
-     e.preventDefault();
-  }, true);
-
-  document.execCommand('copy');  
-  console.log('copied text : ', copyText);
-  alert('copied text: ' + copyText); 
-});
-
-//about section
-$(function() {
-  $('#aboutSection').load('sections/about.html');
-});
-
-//portfolio section
-$(function() {
-  $('#projectsSection').load('sections/projects.html');
-});
-
-//contact section
-$(function() {
-  $('#contactSection').load('sections/contact.html');
-});
+        btn.addEventListener('mouseleave', function () {
+            gsap.to(btn, {
+                x: 0,
+                y: 0,
+                duration: 0.5,
+                ease: "elastic.out(1, 0.3)"
+            });
+        });
+    });
+}
 
 function initTimeZone() {
+    const timeSpan = document.querySelector("#timeSpan");
+    if (!timeSpan) return;
 
-  const timeSpan = document.querySelector("#timeSpan");
+    const optionsTime = {
+        timeZone: 'Asia/Makassar',
+        timeZoneName: 'short',
+        hour: '2-digit',
+        minute: 'numeric',
+        second: 'numeric',
+    };
 
-  const optionsTime = {
-    timeZone: 'Asia/Makassar',
-    timeZoneName: 'short',
-    hour: '2-digit',
-    minute: 'numeric',
-    second: 'numeric',
-  };
+    const formatter = new Intl.DateTimeFormat([], optionsTime);
 
-  const formatter = new Intl.DateTimeFormat([], optionsTime);
-  updateTime();
-  setInterval(updateTime, 1000);
+    function updateTime() {
+        const dateTime = new Date();
+        const formattedDateTime = formatter.format(dateTime);
+        timeSpan.textContent = formattedDateTime;
+    }
 
-  function updateTime() {
-      const dateTime = new Date();
-      const formattedDateTime = formatter.format(dateTime);
-      timeSpan.textContent = formattedDateTime;
-  }
-
+    updateTime();
+    setInterval(updateTime, 1000);
 }
 
+// Init everything
+$(document).ready(function () {
+    initPageTransitions();
+});
