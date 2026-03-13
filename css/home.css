@@ -23,9 +23,342 @@ html {
     overflow-x: hidden;
 }
 
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', 'sans-serif';
+    transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.no-interact,
+body.no-interact {
+    pointer-events: none !important;
+    overflow: hidden !important;
+    touch-action: none !important;
+    user-select: none !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+html.no-interact *,
+body.no-interact * {
+    cursor: none !important;
+    pointer-events: none !important;
+}
+
 body .homepage-container {
     background-color: var(--bg-color);
     color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Version 2 Theme - Dimas Dekka Inspired */
+body.version-2 {
+    --bg-color: #030009;
+    --second-bg-color: #0c001a;
+    --text-color: #ffffff;
+    --main-color: #00ffff;
+    /* Cyan */
+    --accent-color: #7000ff;
+    /* Purple */
+    --text-muted: #8b8b8b;
+    background-color: var(--bg-color);
+    font-family: 'Inter', sans-serif;
+}
+
+body.version-2 .homepage-container {
+    display: none;
+    /* Hide old content */
+}
+
+/* Version 2 Main Container */
+.v2-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, #0d001f 0%, #030009 100%);
+    display: none;
+    opacity: 0;
+    z-index: 500;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Texture Noise */
+.v2-container::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 1;
+}
+
+body.version-2 .v2-container {
+    display: block;
+}
+
+/* V2 Background Marquee */
+.v2-marquee-wrap {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%) rotate(-5deg);
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+}
+
+.v2-marquee {
+    font-size: 25vw;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    animation: marquee-scroll 60s linear infinite;
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: 2px #fff;
+}
+
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* V2 Hero */
+.v2-hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+    padding: 100px 20px;
+}
+
+.v2-title-wrap {
+    text-align: center;
+    margin-bottom: -40px;
+}
+
+.v2-title {
+    font-size: clamp(3rem, 15vw, 12rem);
+    font-weight: 900;
+    line-height: .85;
+    letter-spacing: -0.06em;
+    margin: 0;
+    color: transparent;
+    background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.v2-title span {
+    color: #fff;
+    -webkit-text-stroke: 0;
+}
+
+/* V2 Lanyard/Badge */
+.v2-badge {
+    position: relative;
+    margin-top: 80px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 40px;
+    width: 340px;
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.8),
+        inset 0 0 20px rgba(0, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+/* The Lanyard String Placeholder */
+.v2-badge::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2));
+}
+
+.badge-glow {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    background: var(--main-color);
+    filter: blur(80px);
+    opacity: 0.15;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.v2-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    /* Squircle like Dimas */
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    object-fit: cover;
+    transform: translateZ(20px);
+}
+
+.v2-info {
+    text-align: center;
+    transform: translateZ(10px);
+}
+
+.v2-info h3 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.v2-info p {
+    color: var(--main-color);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+/* V2 Floating Dock */
+.v2-dock {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 8px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.dock-item {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.5rem;
+    transition: all 0.3s;
+}
+
+.dock-item:hover,
+.dock-item.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--main-color);
+    transform: translateY(-5px);
+}
+
+/* Glitch Overlay */
+body.glitching::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Subdivision_Surface.png');
+    opacity: 0.1;
+    z-index: 10000;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    animation: noise 0.2s infinite;
+}
+
+@keyframes noise {
+    0% {
+        transform: translate(0, 0)
+    }
+
+    10% {
+        transform: translate(-5%, -5%)
+    }
+
+    20% {
+        transform: translate(-10%, 5%)
+    }
+
+    30% {
+        transform: translate(5%, -10%)
+    }
+
+    40% {
+        transform: translate(-5%, 15%)
+    }
+
+    50% {
+        transform: translate(-10%, 5%)
+    }
+
+    60% {
+        transform: translate(15%, 0)
+    }
+
+    70% {
+        transform: translate(0, 10%)
+    }
+
+    80% {
+        transform: translate(-15%, 0)
+    }
+
+    90% {
+        transform: translate(10%, 5%)
+    }
+
+    100% {
+        transform: translate(5%, 0)
+    }
+}
+
+/* TV Shutdown Overlay */
+.tv-shutdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 10001;
+    display: none;
+    pointer-events: none;
 }
 
 .loading-container {
@@ -117,7 +450,7 @@ body .homepage-container {
 
 .loading-screen,
 .loading-container .rounded-div-wrap.bottom .rounded-div {
-    background: var(--second-bg-color);
+    background: #000;
 }
 
 .loading-container .rounded-div-wrap.bottom .rounded-div {

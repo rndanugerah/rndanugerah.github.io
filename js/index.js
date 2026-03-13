@@ -76,12 +76,11 @@ function initPageTransitions() {
             });
         }
 
-        tl.set("html", {
-            cursor: "wait"
-        });
-
+        // TOTAL LOCKDOWN of Interaction and Scroll (User Requested)
         tl.call(function () {
-            scroll.stop();
+            document.documentElement.classList.add("no-interact");
+            document.body.classList.add("no-interact");
+            if (typeof scroll !== 'undefined') scroll.stop();
         });
 
         tl.to(".loading-words", {
@@ -95,7 +94,7 @@ function initPageTransitions() {
         tl.to(".loading-words .home-active", {
             duration: .01,
             opacity: 1,
-            stagger: .20,
+            stagger: .40, // Slower (was .20)
             ease: "none",
             onStart: homeActive
         }, "=-.4");
@@ -104,23 +103,23 @@ function initPageTransitions() {
             gsap.to(".loading-words .home-active", {
                 duration: .01,
                 opacity: 0,
-                stagger: .20,
+                stagger: .40, // Slower (was .20)
                 ease: "none",
-                delay: .20
+                delay: .40
             });
         }
 
         tl.to(".loading-words .home-active-last", {
             duration: .01,
             opacity: 1,
-            delay: .20
+            delay: .40
         });
 
         tl.to(".loading-screen", {
-            duration: .8,
+            duration: 1.2, // Slower (was .8)
             top: "-100%",
             ease: "Power4.easeInOut",
-            delay: .70
+            delay: 1.0 // Longer pause on last word
         });
 
         tl.to(".loading-screen .rounded-div-wrap.bottom", {
@@ -129,6 +128,25 @@ function initPageTransitions() {
             ease: "Power4.easeInOut"
         }, "=-.8");
 
+        tl.call(function () {
+            // Start the decrypted text on the main title with 1s delay
+            const title = document.querySelector('.home-content h1');
+            const subTitle = document.querySelector('.home-content h2');
+            const description = document.querySelector('.home-content p');
+
+            if (title) {
+                scrambleText(title, title.innerText, 1.0, 1.0, 3, 40); // Fast reveal
+            }
+            if (subTitle) {
+                scrambleText(subTitle, subTitle.innerText, 1.0, 1.2, 2, 40); // Even faster
+            }
+            if (description) {
+                scrambleText(description, description.innerText, 1.0, 1.5, 1, 30); // Instant flicker
+            }
+
+            // Trigger Glitch System after 5 seconds (User Requested)
+            setTimeout(triggerGlitchSystem, 5000);
+        });
     }
 
     // Animation - Page transition Out
@@ -273,6 +291,209 @@ $(function () {
 $(function () {
     $('#contactSection').load('sections/contact.html');
 });
+
+function scrambleText(element, targetText, duration = 1.5, delay = 0, customIterations = 8, customInterval = 60) {
+    const chars = "!@#$%^&*()_+{}:<>?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const originalContent = targetText || element.innerHTML;
+
+    // Create a temporary container to parse HTML if any
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = originalContent;
+
+    // Get only text nodes and wrap their words in spans for granular control
+    // If you want ONLY specific words, we'll iterate through child nodes
+    const walk = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    const targets = [];
+
+    while (node = walk.nextNode()) {
+        const words = node.nodeValue.split(/(\s+)/); // Preserve spaces
+        const parent = node.parentNode;
+
+        words.forEach(word => {
+            if (word.trim().length > 0) {
+                const span = document.createElement('span');
+                span.innerText = word;
+                span.style.display = 'inline-block';
+                parent.insertBefore(span, node);
+                targets.push({ el: span, text: word });
+            } else {
+                parent.insertBefore(document.createTextNode(word), node);
+            }
+        });
+        parent.removeChild(node);
+    }
+
+    element.innerHTML = tempDiv.innerHTML;
+    // Map the new spans back
+    const spans = element.querySelectorAll('span');
+
+    setTimeout(() => {
+        targets.forEach((target, wordIndex) => {
+            const el = spans[wordIndex];
+            const textArray = target.text.split("");
+            const revealedIndices = new Set();
+            let iterationCount = 0;
+
+            const interval = setInterval(() => {
+                const scrambled = textArray.map((char, i) => {
+                    if (revealedIndices.has(i)) return char;
+                    return chars[Math.floor(Math.random() * chars.length)];
+                }).join("");
+
+                el.innerText = scrambled;
+
+                if (iterationCount >= customIterations) {
+                    if (revealedIndices.size < textArray.length) {
+                        revealedIndices.add(revealedIndices.size);
+                        iterationCount = 0;
+                    } else {
+                        el.innerText = target.text;
+                        clearInterval(interval);
+                    }
+                }
+                iterationCount++;
+            }, customInterval + (wordIndex * 2)); // Slightly vary speed
+        });
+    }, delay * 1000);
+}
+
+function triggerGlitchSystem() {
+    const body = document.body;
+    const tvOverlay = document.createElement('div');
+    tvOverlay.className = 'tv-shutdown-overlay';
+    body.appendChild(tvOverlay);
+
+    const tlCombined = gsap.timeline();
+
+    // Glitch Sequence 1
+    tlCombined.add(createGlitchSequence());
+    // Short Pause
+    tlCombined.to({}, { duration: 0.5 });
+    // Glitch Sequence 2
+    tlCombined.add(createGlitchSequence());
+
+    // TV Shutdown Effect
+    tlCombined.to(tvOverlay, {
+        display: 'block',
+        duration: 0
+    });
+
+    // Line shrink (horizontal)
+    tlCombined.to(tvOverlay, {
+        scaleY: 0.005,
+        duration: 0.3,
+        ease: "power4.inOut"
+    });
+
+    // Dot shrink (vertical)
+    tlCombined.to(tvOverlay, {
+        scaleX: 0,
+        duration: 0.2,
+        ease: "power4.in"
+    });
+
+    // Final Transition to Version 2
+    tlCombined.call(() => {
+        body.classList.add("version-2");
+        body.classList.remove("no-interact");
+        document.documentElement.classList.remove("no-interact"); // Enable interaction for V2
+
+        const v2Container = document.querySelector('.v2-container');
+        if (v2Container) {
+            gsap.set(v2Container, { display: 'block', opacity: 0 });
+            gsap.to(v2Container, { opacity: 1, duration: 1, ease: "power2.out" });
+        }
+
+        // Re-open TV effect (optional or keep it dark for a bit)
+        gsap.to(tvOverlay, {
+            scaleX: 1,
+            scaleY: 1,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power4.out",
+            onComplete: () => {
+                tvOverlay.remove();
+                initV2Interactions(); // Initialize V2 specific logic
+                // Restart scroll if needed for V2
+                if (typeof scroll !== 'undefined') {
+                    scroll.update();
+                    scroll.start();
+                }
+            }
+        });
+    });
+}
+
+function initV2Interactions() {
+    const badge = document.querySelector('.v2-badge');
+    const container = document.querySelector('.v2-container');
+
+    if (!badge || !container) return;
+
+    container.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+
+        // Calculate rotation based on mouse position
+        const xRotation = ((clientY / innerHeight) - 0.5) * 30; // Max 15 deg
+        const yRotation = ((clientX / innerWidth) - 0.5) * -30; // Max -15 deg
+
+        gsap.to(badge, {
+            rotateX: xRotation,
+            rotateY: yRotation,
+            duration: 0.5,
+            ease: "power2.out"
+        });
+
+        // Move the glow inside the badge
+        const badgeRect = badge.getBoundingClientRect();
+        const relX = clientX - badgeRect.left;
+        const relY = clientY - badgeRect.top;
+
+        gsap.to('.badge-glow', {
+            x: relX - (badgeRect.width / 2),
+            y: relY - (badgeRect.height / 2),
+            duration: 1
+        });
+    });
+
+    // Reset rotation when mouse leaves
+    container.addEventListener('mouseleave', () => {
+        gsap.to(badge, {
+            rotateX: 0,
+            rotateY: 0,
+            duration: 1,
+            ease: "elastic.out(1, 0.3)"
+        });
+    });
+}
+
+
+function createGlitchSequence() {
+    const body = document.body;
+    const tl = gsap.timeline();
+    tl.call(() => body.classList.add("glitching"));
+
+    for (let i = 0; i < 15; i++) {
+        tl.to(body, {
+            filter: `invert(${Math.random() > 0.5 ? 1 : 0}) hue-rotate(${Math.random() * 360}deg) contrast(${1 + Math.random() * 2})`,
+            duration: 0.05,
+            x: (Math.random() - 0.5) * 50,
+            y: (Math.random() - 0.5) * 20,
+            ease: "none"
+        });
+    }
+
+    tl.to(body, {
+        filter: "none",
+        x: 0,
+        y: 0,
+        duration: 0.1,
+        onComplete: () => body.classList.remove("glitching")
+    });
+    return tl;
+}
 
 function initTimeZone() {
 
