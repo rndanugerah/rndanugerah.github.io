@@ -54,37 +54,19 @@ function initLoader() {
         animateHome();
         initCursor();
         initMagneticButtons();
-        initWaves();
         $("html").css("cursor", "none"); // reset cursor
     }, null, "-=0.8");
 }
 
-function prepareText() {
-    const title = document.querySelector("#hero-name");
-    if (title && !title.classList.contains("prepared")) {
-        const text = title.innerText.trim();
-        title.innerHTML = "";
-        text.split("").forEach(char => {
-            const span = document.createElement("span");
-            span.className = "char";
-            span.innerText = char === " " ? "\u00A0" : char;
-            title.appendChild(span);
-        });
-        title.classList.add("prepared");
-    }
-}
-
 function animateHome() {
-    prepareText();
-
-    gsap.to(".hero-title .char", {
+    gsap.to(".hero-title .word", {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 0.6,
-        stagger: 0.05,
-        ease: "power3.out",
-        delay: 0.1
+        duration: 1.2,
+        stagger: 0.1,
+        ease: "power4.out",
+        delay: 0.2
     });
 
     gsap.to(".hero-roles-wrapper", {
@@ -136,66 +118,9 @@ function initRoleSelector() {
 
     // Handle Resize
     window.addEventListener('resize', () => {
-        if (roles[currentIndex]) {
-            moveBox(roles[currentIndex]);
-        }
+        moveBox(roles[currentIndex]);
     });
 }
-
-function initWaves() {
-    const canvas = document.getElementById('bg-waves');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let width, height;
-
-    function resize() {
-        width = window.innerWidth;
-        height = window.innerHeight; // full screen
-        canvas.width = width;
-        canvas.height = height;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    let time = 0;
-
-    function draw() {
-        ctx.clearRect(0, 0, width, height);
-
-        const lines = 8;
-        const waveBaseY = height * 0.5; // exactly in the middle
-
-        for (let i = 0; i < lines; i++) {
-            ctx.beginPath();
-            ctx.moveTo(0, waveBaseY);
-
-            const amplitude = 40 + i * 20; // bigger amplitude
-            const frequency = 0.001 + i * 0.0003;
-            const phase = time * (0.01 + i * 0.005);
-
-            for (let x = 0; x <= width; x += 15) {
-                const y = waveBaseY
-                    - (Math.sin(x * frequency + phase) * amplitude)
-                    - (Math.cos(x * 0.0005 - phase) * (amplitude * 0.5));
-                ctx.lineTo(x, y);
-            }
-
-            // White lines with varying opacity
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.05 + (i * 0.015)})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-        }
-
-        time++;
-        requestAnimationFrame(draw);
-    }
-
-    draw();
-}
-
-// Removed MatterJS logic as we use ReactBits Lanyard now
-
-// Cursor and other initializations continue below...
 
 function initLocomotiveScroll() {
     const scrollContainer = document.querySelector('[data-scroll-container]');

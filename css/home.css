@@ -262,24 +262,11 @@ section {
     margin-bottom: 2rem;
 }
 
-.hero-title .char {
+.hero-title .word {
     display: inline-block;
     opacity: 0;
-    transform: translateY(-80px);
+    transform: translateY(30px);
     filter: blur(10px);
-}
-
-/* Background Waves */
-.bg-waves {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* full height */
-    z-index: 1;
-    /* Above marquee, behind text */
-    pointer-events: none;
 }
 
 /* Roles / Glowing bracket */
@@ -363,131 +350,97 @@ section {
     border-radius: 0 0 4px 0;
 }
 
-/* ID Card Lanyard */
-.id-card-wrapper {
-    position: absolute;
-    right: 15vw;
-    top: -5vh;
-    /* anchor point */
-    width: 300px;
-    height: 700px;
-    z-index: 20;
-    pointer-events: none;
-    /* important so elements under wrapper can be clicked */
+/* Floating Profile Badge */
+.floating-badge-wrapper {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
 }
 
-#rope-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-.lanyard {
-    width: 12px;
-    height: 30vh;
-    background: repeating-linear-gradient(45deg, #111, #111 5px, #222 5px, #222 10px);
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    border-left: 1px solid #333;
-    border-right: 1px solid #000;
-}
-
-.id-card {
-    background: #e2e8f0;
-    width: 220px;
-    height: 310px;
-    border-radius: 12px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(255, 255, 255, 0.8);
+.floating-badge {
+    position: relative;
+    background: rgba(20, 21, 22, 0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px;
+    gap: 20px;
+    width: 250px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.badge-glow {
     position: absolute;
-    top: 0;
-    left: 0;
-    color: #0f172a;
-    pointer-events: auto;
-    /* Re-enable pointer events for the card */
-    cursor: grab;
-    will-change: transform;
-    user-select: none;
+    top: -50px;
+    left: -50px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
 }
 
-.id-card:active {
-    cursor: grabbing;
-}
-
-.card-hole {
-    width: 50px;
-    height: 12px;
-    background: #060010;
-    /* backdrop color */
-    border-radius: 10px;
-    margin-top: -5px;
-    margin-bottom: 15px;
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.8);
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.card-hole::before {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 30px;
-    background: linear-gradient(to right, #666, #999, #666);
-    border-radius: 3px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    z-index: -1;
-}
-
-.id-avatar {
-    width: 140px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #cbd5e1;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    filter: grayscale(80%);
-    transition: filter 0.3s;
-}
-
-.id-card:hover .id-avatar {
-    filter: grayscale(0%);
-}
-
-.id-details {
-    margin-top: 15px;
+.badge-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     text-align: center;
-    width: 100%;
 }
 
-.id-details h3 {
-    font-size: 1.15rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin-bottom: 2px;
+.badge-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.id-role {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #0891b2;
-    text-transform: uppercase;
+.badge-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
-.id-barcode {
-    margin-top: auto;
-    font-family: monospace;
+.badge-handle {
     font-size: 1.1rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #334155;
+    font-weight: 600;
+}
+
+.badge-status {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+}
+
+.badge-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    background: #06b6d4;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.badge-btn:hover {
+    background: #0891b2;
 }
 
 /* About */
