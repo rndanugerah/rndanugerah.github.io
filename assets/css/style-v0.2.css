@@ -206,6 +206,48 @@ main.touch .main-wrap {
    padding: calc(var(--gap-padding) / 2) calc(var(--gap-padding) / 2);
 }
 
+.sticky-nav.is-visible {
+   opacity: 1 !important;
+   pointer-events: all !important;
+   background: rgba(28, 29, 32, 0.7);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-bar .btn-link .btn-text {
+   position: relative;
+   padding: 15px 0;
+   font-size: 1.15rem;
+   font-family: 'NeueMontreal-Regular', sans-serif;
+}
+
+.nav-bar .nav-link-active .btn-text::after {
+   content: '';
+   position: absolute;
+   bottom: 4px;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 6px;
+   height: 6px;
+   background: var(--color-yellow);
+   border-radius: 50%;
+   box-shadow: 0 0 10px var(--color-yellow);
+}
+
+.sticky-nav-right .overview-top,
+.sticky-nav-right .summary-top {
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+}
+
+.sticky-nav-right {
+   display: flex;
+   gap: clamp(2rem, 5vw, 6rem) !important;
+   align-items: center;
+}
+
 .nav-bar .links-wrap li:last-child {
    display: none;
 }
@@ -1449,7 +1491,7 @@ main.touch .main-wrap {
    position: absolute;
    top: -25%;
    left: 0;
-   height: 150%;
+   height: 500%;
    width: 100%;
    background-image: url("../img/stars-2.svg");
    pointer-events: none;

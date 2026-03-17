@@ -38,6 +38,7 @@
    <link href="assets/css/components-v0.1.css" rel="stylesheet">
    <link href="assets/css/style-v0.2.css" rel="stylesheet">
    <link href="assets/css/profile-card.css" rel="stylesheet">
+   <link href="assets/css/logoloop.css" rel="stylesheet">
    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -170,6 +171,50 @@
             </div>
          </div>
       </div>
+      <div class="nav-bar sticky-nav"
+         style="opacity: 0; pointer-events: none; transition: opacity 0.5s ease; z-index: 1000;">
+         <div class="credits-top">
+            <a href="#home" data-scroll-to class="btn btn-link btn-left-top nav-link-home">
+               <div class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                  <span class="btn-text">
+                     <div class="cbd">
+                        <span class="code-by shiny-text">© Upd Code</span>
+                        <span class="dennis">
+                           <span class="dennis-span shiny-text">by Randy</span>
+                           <span class="snellenberg shiny-text">v.2026</span>
+                        </span>
+                     </div>
+                  </span>
+               </div>
+            </a>
+         </div>
+
+         <div class="sticky-nav-right" style="display: flex; gap: clamp(1rem, 3vw, 4rem); align-items: center;">
+            <div class="overview-top">
+               <a href="#overview" data-scroll-to class="btn btn-link nav-link-overview">
+                  <div class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                     <span class="btn-text">
+                        <div class="cbd">
+                           <span class="code-by shiny-text">Overview</span>
+                        </div>
+                     </span>
+                  </div>
+               </a>
+            </div>
+
+            <div class="summary-top">
+               <a href="#summary" data-scroll-to class="btn btn-link nav-link-summary">
+                  <div class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                     <span class="btn-text">
+                        <div class="cbd">
+                           <span class="code-by shiny-text">Summary</span>
+                        </div>
+                     </span>
+                  </div>
+               </a>
+            </div>
+         </div>
+      </div>
       <div class="main-wrap" data-scroll-container>
          <header class="header-overflow-wrap" data-scroll-section>
             <section class="section home-header" id="home">
@@ -214,37 +259,8 @@
                   <img class="glitch-layer glitch-last" src="assets/img/glitchLast.png" style="opacity: 0;">
                </div>
             </section>
-            <section class="collection-header theme-dark">
-               <div class="nav-bar">
-                  <div class="credits-top collection-once-in">
-                     <a href="index.html" class="btn btn-link btn-left-top collection-once-in">
-                        <div class="btn-click magnetic" data-strength="20" data-strength-text="10">
-                           <span class="btn-text">
-                              <div class="credit shiny-text"><span></span></div>
-                              <div class="cbd">
-                                 <span class="code-by shiny-text">© Upd Code</span>
-                                 <span class="dennis">
-                                    <span class="dennis-span shiny-text">by Randy</span>
-                                    <span class="snellenberg shiny-text">v.2026</span>
-                                 </span>
-                              </div>
-                           </span>
-                        </div>
-                     </a>
-                  </div>
+            <section class="collection-header theme-dark" id="overview">
 
-                  <div class="summary-top collection-once-in">
-                     <a href="#summary" data-scroll-to class="btn btn-link collection-once-in">
-                        <div class="btn-click magnetic" data-strength="20" data-strength-text="10">
-                           <span class="btn-text">
-                              <div class="cbd">
-                                 <span class="code-by shiny-text">Summary</span>
-                              </div>
-                           </span>
-                        </div>
-                     </a>
-                  </div>
-               </div>
 
                <div class="bg-stars"></div>
 
@@ -293,7 +309,7 @@
                                     <div class="circle-hor-middle"></div>
                                  </div>
                               </div>
-                              <div>Portfolio 2026</div>
+                              <div>Website Portfolio v.2026</div>
                               <div class="globe">
                                  <div class="globe-wrap">
                                     <div class="circle"></div>
@@ -418,50 +434,225 @@
             </section>
 
             <section class="section what-i-do theme-dark" id="summary"
-               style="min-height: 100vh; padding: 10vh 10vw; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; position: relative; z-index: 10;">
-               <div class="pc-card-wrapper" id="profile-card" style="
-                  --icon: url(&quot;data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M10 10h4v4h-4zM80 80h4v4h-4z' fill='%23fff' fill-opacity='0.4'/%3E%3Cpath d='M50 20h2v10h-2zM46 24h10v2H46z' fill='%23fff' fill-opacity='0.6'/%3E%3Cpath d='M20 70l3-3 3 3-3 3z' fill='%23fff' fill-opacity='0.5'/%3E%3Ctext x='70' y='40' fill='%23fff' font-family='monospace' font-size='14' font-weight='bold' fill-opacity='0.5'%3E/%3C/text%3E%3Ctext x='30' y='90' fill='%23fff' font-family='monospace' font-size='14' font-weight='bold' fill-opacity='0.5'%3E[]%3C/text%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23p)'/%3E%3C/svg%3E&quot;);
-                  --grain: none;
-                  --inner-gradient: linear-gradient(145deg, rgba(50, 60, 90, 0.6) 0%, rgba(30, 80, 120, 0.4) 100%);
-                  --behind-glow-color: rgba(125, 190, 255, 0.3);
-                  --behind-glow-size: 50%;
-                  ">
-                  <div class="pc-behind"></div>
-                  <div class="pc-card-shell">
-                     <section class="pc-card">
-                        <div class="pc-inside">
-                           <div class="pc-shine"></div>
-                           <div class="pc-glare"></div>
-                           <div class="pc-content pc-avatar-content">
-                              <img class="avatar" src="assets/img/terbaru.png" alt="Randy Anugerah avatar"
-                                 loading="lazy" style="bottom: 0px;">
-                           </div>
-                           <div class="pc-content">
-                              <div class="pc-details">
-                                 <p id="pc-name-scramble">Who Am I ?</p>
-                                 <p id="pc-jobtitle-scramble"> </p>
+               style="min-height: 100vh; padding: 10vh 10vw; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 10;">
+               <div class="summary-container"
+                  style="display: flex; flex-direction: row; align-items: stretch; justify-content: center; gap: 5vw; width: 100%; max-width: 1200px;">
+
+                  <div class="summary-left" style="flex: 0 0 auto; display: flex; flex-direction: column;">
+                     <div class="pc-card-wrapper" id="profile-card" style="
+                        --icon: url(&quot;data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M10 10h4v4h-4zM80 80h4v4h-4z' fill='%23fff' fill-opacity='0.4'/%3E%3Cpath d='M50 20h2v10h-2zM46 24h10v2H46z' fill='%23fff' fill-opacity='0.6'/%3E%3Cpath d='M20 70l3-3 3 3-3 3z' fill='%23fff' fill-opacity='0.5'/%3E%3Ctext x='70' y='40' fill='%23fff' font-family='monospace' font-size='14' font-weight='bold' fill-opacity='0.5'%3E/%3C/text%3E%3Ctext x='30' y='90' fill='%23fff' font-family='monospace' font-size='14' font-weight='bold' fill-opacity='0.5'%3E[]%3C/text%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23p)'/%3E%3C/svg%3E&quot;);
+                        --grain: none;
+                        --inner-gradient: linear-gradient(145deg, rgba(50, 60, 90, 0.6) 0%, rgba(30, 80, 120, 0.4) 100%);
+                        --behind-glow-color: rgba(125, 190, 255, 0.3);
+                        --behind-glow-size: 50%;
+                        ">
+                        <div class="pc-behind"></div>
+                        <div class="pc-card-shell">
+                           <section class="pc-card">
+                              <div class="pc-inside">
+                                 <div class="pc-shine"></div>
+                                 <div class="pc-glare"></div>
+                                 <div class="pc-content pc-avatar-content">
+                                    <img class="avatar" src="assets/img/terbaru.png" alt="Randy Anugerah avatar"
+                                       loading="lazy" style="bottom: 0px;">
+                                 </div>
+                                 <div class="pc-content">
+                                    <div class="pc-details">
+                                       <p id="pc-name-scramble">Who Am I ?</p>
+                                       <p id="pc-jobtitle-scramble"> </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </section>
+                        </div>
+
+                        <div class="pc-user-info">
+                           <div class="pc-user-details">
+                              <div class="pc-mini-avatar">
+                                 <img src="assets/img/terbaru.png" alt="Randy Anugerah mini avatar" loading="lazy">
+                              </div>
+                              <div class="pc-user-text">
+                                 <div class="pc-handle">@rndanugerah</div>
+                                 <div class="pc-status">Online</div>
                               </div>
                            </div>
-                        </div>
-                     </section>
-                  </div>
-
-                  <div class="pc-user-info">
-                     <div class="pc-user-details">
-                        <div class="pc-mini-avatar">
-                           <img src="assets/img/terbaru.png" alt="Randy Anugerah mini avatar" loading="lazy">
-                        </div>
-                        <div class="pc-user-text">
-                           <div class="pc-handle">@rndanugerah</div>
-                           <div class="pc-status">Online</div>
+                           <button class="pc-contact-btn" type="button" aria-label="Contact Randy"
+                              onclick="window.location.href='#contact'">
+                              Contact Me
+                           </button>
                         </div>
                      </div>
-                     <button class="pc-contact-btn" type="button" aria-label="Contact Randy"
-                        onclick="window.location.href='#contact'">
-                        Contact Me
-                     </button>
                   </div>
 
+                  <div class="summary-right"
+                     style="flex: 1 1 auto; display: flex; flex-direction: column; justify-content: space-between; align-items: stretch; max-width: 800px;">
+                     <div class="summary-text-box"
+                        style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2.5rem; backdrop-filter: blur(10px); flex-grow: 1; margin-bottom: 2rem;">
+                        <h2
+                           style="font-size: 2.5rem; margin-bottom: 1.5rem; color: #fff; font-weight: 700; font-family: 'NeueMontreal-Regular', sans-serif;">
+                           Summary</h2>
+                        <p style="color: #ccc; font-size: 1.1rem; line-height: 1.6; font-weight: 400;">
+                           I am a passionate and dedicated Data Scientist and Web Developer with a strong foundation in
+                           analyzing complex datasets and building robust web applications. With expertise in React,
+                           Next.js, and modern CSS frameworks like Tailwind CSS, I create seamless, interactive, and
+                           visually stunning user experiences. My analytical background enables me to approach web
+                           development with a data-driven mindset, ensuring that every digital solution is optimized for
+                           performance and user engagement.<br><br>Let's collaborate to bring innovative ideas to life
+                           through elegant code and actionable data insights.
+                        </p>
+                     </div>
+
+                     <div class="skillset-box"
+                        style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 2rem 2.5rem; backdrop-filter: blur(10px); flex: 0 0 auto;">
+                        <h3
+                           style="font-size: 1.2rem; margin-bottom: 1rem; color: #fff; font-weight: 600; font-family: 'NeueMontreal-Regular', sans-serif;">
+                           Skillset & Tools</h3>
+
+                        <div class="logoloop logoloop--fade" data-speed="80" data-direction="left" data-gap="40"
+                           data-logo-height="40" style="--logoloop-fadeColor: #081b29;">
+                           <div class="logoloop__track">
+                              <ul class="logoloop__list">
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://github.com" target="_blank"><img
+                                          class="logo-bw logo-invert"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"
+                                          alt="GitHub" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://docker.com" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+                                          alt="Docker" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://code.visualstudio.com" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"
+                                          alt="VS Code" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://python.org" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+                                          alt="Python" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://java.com" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"
+                                          alt="Java" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://jenkins.io" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jenkins/jenkins-original.svg"
+                                          alt="Jenkins" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link"
+                                       href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5"
+                                       target="_blank"><img class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+                                          alt="HTML5" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+                                       target="_blank"><img class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+                                          alt="CSS3" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://tailwindcss.com" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
+                                          alt="Tailwind CSS" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://sass-lang.com" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sass/sass-original.svg"
+                                          alt="Sass" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://mongodb.com" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
+                                          alt="MongoDB" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://mysql.com" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+                                          alt="MySQL" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://aws.amazon.com" target="_blank"><img
+                                          class="logo-bw logo-invert"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
+                                          alt="AWS" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://postgresql.org" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
+                                          alt="PostgreSQL" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://ruby-lang.org" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ruby/ruby-original.svg"
+                                          alt="Ruby" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://rubyonrails.org" target="_blank"><img
+                                          class="logo-bw logo-invert"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/rails/rails-plain-wordmark.svg"
+                                          alt="Ruby on Rails" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://tensorflow.org" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg"
+                                          alt="TensorFlow" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://javascript.info" target="_blank"><img
+                                          class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+                                          alt="JavaScript" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://lookerstudio.google.com/"
+                                       target="_blank"><img class="logo-bw" src="https://cdn.simpleicons.org/looker"
+                                          alt="Looker Studio" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://www.google.com/sheets/about/"
+                                       target="_blank"><img class="logo-bw"
+                                          src="https://cdn.simpleicons.org/googlesheets" alt="Google Sheets" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://streamlit.io/" target="_blank"><img
+                                          class="logo-bw" src="https://cdn.simpleicons.org/streamlit"
+                                          alt="Streamlit" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://developers.google.com/apps-script"
+                                       target="_blank"><img class="logo-bw"
+                                          src="https://cdn.simpleicons.org/googleappsscript"
+                                          alt="Google Apps Script" /></a>
+                                 </li>
+                                 <li class="logoloop__item">
+                                    <a class="logoloop__link" href="https://spring.io/projects/spring-boot"
+                                       target="_blank"><img class="logo-bw"
+                                          src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg"
+                                          alt="Spring Boot" /></a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </section>
 
@@ -513,6 +704,7 @@
    <script src="assets/js/locomotive-scroll.min.js"></script>
    <script defer src="assets/js/profile-card.js"></script>
    <script defer src="assets/js/index-v0.2.js"></script>
+   <script defer src="assets/js/logoloop.js"></script>
 
    <script>
       window.bearly = {};

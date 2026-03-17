@@ -426,7 +426,80 @@ function initPageTransitions() {
       smooth: true,
     });
     window.onresize = scroll.update();
-    scroll.on("scroll", () => ScrollTrigger.update());
+    function updateStickyNav() {
+      const stickyNav = document.querySelector('.sticky-nav');
+      const homeSection = document.querySelector('section#home');
+      const overviewSection = document.querySelector('#overview');
+      const summarySection = document.querySelector('#summary');
+      
+      const homeLink = document.querySelector('.nav-link-home');
+      const overviewLink = document.querySelector('.nav-link-overview');
+      const summaryLink = document.querySelector('.nav-link-summary');
+
+      if (stickyNav && homeSection) {
+        const homeRect = homeSection.getBoundingClientRect();
+        
+        // Show sticky nav when the hero section is mostly out of view
+        if (homeRect.bottom < 150) {
+          stickyNav.classList.add('is-visible');
+        } else {
+          stickyNav.classList.remove('is-visible');
+        }
+
+        // Active indicator logic
+        if (overviewSection && summarySection) {
+          const overviewRect = overviewSection.getBoundingClientRect();
+          const summaryRect = summarySection.getBoundingClientRect();
+          
+          if (summaryRect.top <= (window.innerHeight / 2)) {
+            summaryLink?.classList.add('nav-link-active');
+            overviewLink?.classList.remove('nav-link-active');
+            homeLink?.classList.remove('nav-link-active');
+          } else if (overviewRect.top <= (window.innerHeight / 2)) {
+            overviewLink?.classList.add('nav-link-active');
+            summaryLink?.classList.remove('nav-link-active');
+            homeLink?.classList.remove('nav-link-active');
+          } else {
+            homeLink?.classList.add('nav-link-active');
+            overviewLink?.classList.remove('nav-link-active');
+            summaryLink?.classList.remove('nav-link-active');
+          }
+        }
+      }
+    }
+
+    scroll.on("scroll", (args) => {
+      ScrollTrigger.update();
+      updateStickyNav();
+    });
+
+    ScrollTrigger.addEventListener('refresh', () => {
+      scroll.update();
+      updateStickyNav();
+    });
+
+    // Initialize state immediately and after a few frames for safety
+    updateStickyNav();
+    setTimeout(() => updateStickyNav(), 100);
+    setTimeout(() => updateStickyNav(), 500);
+    setTimeout(() => updateStickyNav(), 1000);
+    requestAnimationFrame(updateStickyNav);
+
+    // Add manual click listeners for navigation links for guaranteed functionality
+    document.querySelectorAll('.sticky-nav .btn-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.getAttribute('href');
+        if (target) {
+          // If it's #home, scroll to 0/top
+          if (target === '#home') {
+             scroll.scrollTo(0);
+          } else {
+             scroll.scrollTo(target);
+          }
+        }
+      });
+    });
     ScrollTrigger.scrollerProxy('[data-scroll-container]', {
       scrollTop(value) {
         return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
