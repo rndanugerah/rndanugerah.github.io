@@ -228,6 +228,13 @@ function triggerDoubleGlitchAndTransition() {
 
     // Reveal Page 2 Container
     gsap.set("main .collection-header", { autoAlpha: 1 });
+    
+    // Reveal Cursor Follower
+    const cursorFollower = document.querySelector('.cursor-follower');
+    if (cursorFollower) {
+      cursorFollower.style.visibility = 'visible';
+      cursorFollower.style.opacity = '1';
+    }
 
     // Reveal elements of the next section with the 'stars' slide style
     gsap.to("main .collection-header .collection-once-in", {
@@ -557,6 +564,7 @@ function initScript() {
   initTimeZone();
   initTrueFocus();
   initBlurText();
+  initCursorFollower();
 }
 
 
@@ -1002,5 +1010,38 @@ function initBlurText() {
         });
       }
     });
+  });
+}
+
+function initCursorFollower() {
+  const star = document.querySelector('.cursor-star');
+  const dot = document.querySelector('.cursor-dot');
+  
+  if (!star || !dot) return;
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let starX = mouseX;
+  let starY = mouseY;
+  let dotX = mouseX;
+  let dotY = mouseY;
+  
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+  
+  // Use GSAP ticker for high-performance animation frame handling
+  gsap.ticker.add(() => {
+    // Star follows mouse with smooth interpolation (lerp)
+    starX += (mouseX - starX) * 0.12;
+    starY += (mouseY - starY) * 0.12;
+    
+    // Dot follows star with a bit more delay to create the "chain" effect
+    dotX += (starX - dotX) * 0.15;
+    dotY += (starY - dotY) * 0.15;
+    
+    gsap.set(star, { x: starX, y: starY });
+    gsap.set(dot, { x: dotX, y: dotY });
   });
 }
