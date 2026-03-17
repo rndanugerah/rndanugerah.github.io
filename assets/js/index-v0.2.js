@@ -7,7 +7,7 @@ const body = document.body;
 const select = (e) => document.querySelector(e);
 const selectAll = (e) => document.querySelectorAll(e);
 
-let twinkleTimeline; // Global variable to store the twinkle timeline
+let twinkleTimeline;
 
 initPageTransitions();
 
@@ -293,6 +293,24 @@ function startTextScrambleLoopJobTitle() {
     tl.to("#jobtitle-scramble", { duration: 2.5, scrambleText: { text: "Data Analyst", speed: 0.3, chars: "$#%^!=_)+;{." } }, "<");
     tl.to("#jobtitle-scramble", { duration: 2.5, scrambleText: { text: "Software Engineer", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 4");
     tl.to("#jobtitle-scramble", { duration: 2.5, scrambleText: { text: "Data Scientist", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
+  }
+
+  var tlPcName = gsap.timeline({ repeat: -1 });
+  if (document.querySelector("#pc-name-scramble")) {
+    tlPcName.to("#pc-name-scramble", { duration: 2.5, scrambleText: { text: "I'm M. Randy Anugerah", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 4");
+    tlPcName.to("#pc-name-scramble", { duration: 2.5, scrambleText: { text: "I'm M. Randy Anugerah", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
+    tlPcName.to("#pc-name-scramble", { duration: 2.5, scrambleText: { text: "I'm M. Randy Anugerah", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
+    tlPcName.to("#pc-name-scramble", { duration: 2.5, scrambleText: { text: "I'm M. Randy Anugerah", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
+    tlPcName.to("#pc-name-scramble", { duration: 2.5, scrambleText: { text: "Who Am I ?", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
+  }
+
+  var tlPc = gsap.timeline({ repeat: -1 });
+  if (document.querySelector("#pc-jobtitle-scramble")) {
+    tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "as Software Engineer", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 4");
+    tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "as Data Analyst", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
+    tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "as Data Scientist", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
+    tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "as Web Developer", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
+    tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
   }
 }
 
@@ -810,15 +828,34 @@ function initTrueFocus() {
     });
   });
 
+  let autoPlayInterval;
+
+  const startAutoPlay = () => {
+    clearInterval(autoPlayInterval);
+    autoPlayInterval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % spanWords.length;
+      lastActiveIndex = currentIndex;
+      updateFocus(currentIndex);
+    }, 2000);
+  };
+
+  container.addEventListener('mouseenter', () => {
+    clearInterval(autoPlayInterval);
+  });
+
   container.addEventListener('mouseleave', () => {
     // Revert to last active to keep it there
     currentIndex = lastActiveIndex;
     updateFocus(currentIndex);
+    startAutoPlay();
   });
 
   // Initialize slightly delayed to allow layout to settle
   currentIndex = 0;
-  setTimeout(() => updateFocus(0), 100);
+  setTimeout(() => {
+    updateFocus(0);
+    startAutoPlay();
+  }, 100);
 
   // Handle window resizing
   window.addEventListener('resize', () => {
