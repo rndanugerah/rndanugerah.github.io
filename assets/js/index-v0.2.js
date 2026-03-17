@@ -431,14 +431,14 @@ function initPageTransitions() {
       const homeSection = document.querySelector('section#home');
       const overviewSection = document.querySelector('#overview');
       const summarySection = document.querySelector('#summary');
-      
+
       const homeLink = document.querySelector('.nav-link-home');
       const overviewLink = document.querySelector('.nav-link-overview');
       const summaryLink = document.querySelector('.nav-link-summary');
 
       if (stickyNav && homeSection) {
         const homeRect = homeSection.getBoundingClientRect();
-        
+
         // Show sticky nav when the hero section is mostly out of view
         if (homeRect.bottom < 150) {
           stickyNav.classList.add('is-visible');
@@ -450,7 +450,7 @@ function initPageTransitions() {
         if (overviewSection && summarySection) {
           const overviewRect = overviewSection.getBoundingClientRect();
           const summaryRect = summarySection.getBoundingClientRect();
-          
+
           if (summaryRect.top <= (window.innerHeight / 2)) {
             summaryLink?.classList.add('nav-link-active');
             overviewLink?.classList.remove('nav-link-active');
@@ -493,9 +493,9 @@ function initPageTransitions() {
         if (target) {
           // If it's #home, scroll to 0/top
           if (target === '#home') {
-             scroll.scrollTo(0);
+            scroll.scrollTo(0);
           } else {
-             scroll.scrollTo(target);
+            scroll.scrollTo(target);
           }
         }
       });
@@ -556,6 +556,7 @@ function initScript() {
   initFlickitySlider();
   initTimeZone();
   initTrueFocus();
+  initBlurText();
 }
 
 
@@ -678,9 +679,7 @@ function initScrolltriggerNav() {
   });
 }
 
-/**
- * Seamless Loop Helper (Inspired by Copy Dennis)
- */
+
 function roll(targets, vars, reverse) {
   vars = vars || {};
   vars.ease || (vars.ease = "none");
@@ -933,5 +932,75 @@ function initTrueFocus() {
   // Handle window resizing
   window.addEventListener('resize', () => {
     setTimeout(() => updateFocus(currentIndex), 100);
+  });
+}
+
+/**
+ * Blur Text Effect (Ported from React Bits to Vanilla JS using GSAP)
+ */
+function initBlurText() {
+  const elements = document.querySelectorAll('.blur-text-init');
+
+  elements.forEach(el => {
+    const originalHTML = el.innerHTML;
+    const animateBy = el.dataset.animateBy || 'words';
+    const delay = parseInt(el.dataset.delay) || 180;
+    const direction = el.dataset.direction || 'top';
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = originalHTML;
+
+    const processNodes = (node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        const text = node.textContent;
+        const segments = animateBy === 'words' ? text.split(/(\s+)/) : text.split('');
+        const fragment = document.createDocumentFragment();
+
+        segments.forEach(segment => {
+          if (segment.trim() === '' && animateBy === 'words') {
+            fragment.appendChild(document.createTextNode(segment));
+          } else {
+            const span = document.createElement('span');
+            span.className = 'blur-text-span';
+            span.style.display = 'inline-block';
+            span.style.willChange = 'transform, filter, opacity';
+            span.innerText = segment;
+            fragment.appendChild(span);
+          }
+        });
+
+        node.parentNode.replaceChild(fragment, node);
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        Array.from(node.childNodes).forEach(processNodes);
+      }
+    };
+
+    Array.from(tempDiv.childNodes).forEach(processNodes);
+    el.innerHTML = tempDiv.innerHTML;
+
+    const spanElements = el.querySelectorAll('.blur-text-span');
+    if (spanElements.length === 0) return;
+
+    gsap.from(spanElements, {
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        scroller: document.querySelector('[data-scroll-container]'),
+        toggleActions: 'play none none none'
+      },
+      duration: 0.5,
+      opacity: 0,
+      y: direction === 'top' ? -50 : 50,
+      filter: 'blur(10px)',
+      stagger: delay / 1000,
+      ease: 'power2.out',
+      onComplete: () => {
+        // Clean up filters for rendering performance
+        spanElements.forEach(s => {
+          s.style.filter = 'none';
+          s.style.willChange = 'auto';
+        });
+      }
+    });
   });
 }

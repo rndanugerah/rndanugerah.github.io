@@ -54,8 +54,24 @@
 }
 
 .pc-card-wrapper:hover,
-.pc-card-wrapper.active {
+.pc-card-wrapper.active,
+.pc-card-wrapper.auto-glow {
   --card-opacity: 1;
+}
+
+.pc-card-wrapper.auto-glow .pc-behind {
+  opacity: 1;
+  --behind-glow-size: 40%;
+}
+
+.pc-card-wrapper.auto-glow .pc-card {
+  box-shadow: 0 0 30px rgba(125, 190, 255, 0.6), inset 0 0 15px rgba(125, 190, 255, 0.3); 
+  border: 1px solid rgba(125, 190, 255, 0.8);
+}
+
+.pc-card-wrapper.auto-glow .pc-shine::before,
+.pc-card-wrapper.auto-glow .pc-shine::after {
+  opacity: 0.6;
 }
 
 .pc-card {
