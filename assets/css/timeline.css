@@ -1,0 +1,178 @@
+/* Vertical Journey Timeline Styles */
+.timeline-section {
+   position: relative;
+   padding: 15vh 5vw;
+   background: transparent;
+   color: #fff;
+   overflow: hidden;
+   z-index: 5;
+}
+
+.timeline-title {
+   font-size: clamp(3rem, 5vw, 5rem);
+   text-align: center;
+   margin-bottom: 8rem;
+   font-family: "NeueMontreal-Regular", sans-serif;
+   position: relative;
+   z-index: 10;
+}
+
+.timeline-container {
+   max-width: 1000px;
+   margin: 0 auto;
+   position: relative;
+}
+
+.timeline-line-bg {
+   position: absolute;
+   left: 50%;
+   top: 0;
+   bottom: 0;
+   width: 2px;
+   background: rgba(255, 255, 255, 0.1);
+   transform: translateX(-50%);
+   z-index: 1;
+}
+
+.timeline-line-progress {
+   position: absolute;
+   left: 50%;
+   top: 0;
+   width: 4px;
+   background: #FFD600; /* Yellow progress */
+   box-shadow: 0 0 10px #FFD600, 0 0 20px #FFD600;
+   transform: translateX(-50%);
+   height: 0%; /* Will be animated */
+   z-index: 2;
+}
+
+.timeline-star-icon {
+   position: absolute;
+   left: 50%;
+   top: 0%; /* Will be animated */
+   transform: translate(-50%, -50%);
+   z-index: 3;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.timeline-item {
+   position: relative;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 6rem;
+   margin-bottom: 8rem;
+   z-index: 5;
+}
+
+.timeline-item:last-child {
+   margin-bottom: 0;
+}
+
+/* Contents styling */
+.timeline-content-left {
+   text-align: right;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+.timeline-content-right {
+   text-align: left;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.timeline-desc {
+   color: #aaa;
+   font-size: 1.1rem;
+   line-height: 1.6;
+   font-family: monospace;
+}
+
+.timeline-heading h3 {
+   font-size: 1.5rem;
+   color: #fff;
+   margin-bottom: 0.5rem;
+   font-family: monospace;
+}
+
+.timeline-heading h4 {
+   font-size: 1.1rem;
+   color: #ccc;
+   font-weight: normal;
+   margin-bottom: 0.5rem;
+   font-family: monospace;
+}
+
+.timeline-heading .timeline-date {
+   font-size: 0.9rem;
+   color: #888;
+   letter-spacing: 2px;
+   margin-bottom: 1rem;
+   font-family: monospace;
+}
+
+.timeline-logo {
+   height: 48px;
+   width: 48px;
+   object-fit: cover;
+   border-radius: 50%;
+   margin-top: 1rem;
+   display: inline-block;
+   background: white;
+   padding: 4px;
+}
+
+/* Specific item structure for spacing alignment */
+.timeline-item:nth-child(add) .timeline-desc {
+   text-align: left;
+}
+.timeline-item:nth-child(odd) .timeline-heading {
+   text-align: right;
+}
+.timeline-item:nth-child(odd) .timeline-logo {
+   margin-left: auto;
+}
+
+.timeline-item:nth-child(even) .timeline-heading {
+   text-align: left;
+}
+.timeline-item:nth-child(even) .timeline-desc {
+   text-align: right;
+}
+.timeline-item:nth-child(even) .timeline-logo {
+   margin-right: auto;
+}
+
+@media (max-width: 768px) {
+   .timeline-item {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+   }
+   .timeline-line-bg, .timeline-line-progress, .timeline-star-icon, .timeline-node {
+      left: 30px;
+   }
+   /* Reset alignments for mobile */
+   .timeline-content-left, .timeline-content-right,
+   .timeline-item:nth-child(odd) .timeline-heading,
+   .timeline-item:nth-child(even) .timeline-heading,
+   .timeline-item:nth-child(odd) .timeline-desc,
+   .timeline-item:nth-child(even) .timeline-desc {
+      text-align: left;
+      padding-left: 70px;
+      padding-right: 0;
+   }
+   .timeline-logo {
+      margin-left: 0 !important;
+      margin-right: auto !important;
+   }
+   /* Flip the DOM order for mobile so heading is always top */
+   .timeline-item:nth-child(even) .timeline-content-left {
+      order: 2;
+   }
+   .timeline-item:nth-child(even) .timeline-content-right {
+      order: 1;
+   }
+}
