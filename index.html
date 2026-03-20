@@ -226,6 +226,18 @@
                   </div>
                </a>
             </div>
+
+            <div class="journey-top">
+               <a href="#journey" data-scroll-to class="btn btn-link nav-link-journey">
+                  <div class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                     <span class="btn-text">
+                        <div class="cbd">
+                           <span class="code-by shiny-text">Journey</span>
+                        </div>
+                     </span>
+                  </div>
+               </a>
+            </div>
          </div>
       </div>
       <div class="main-wrap" data-scroll-container>
@@ -691,8 +703,12 @@
                      </svg>
                   </div>
                   <svg class="timeline-svg-curve" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-                     <path id="timeline-path-bg" d="M 500,0 C 900,250 900,300 500,500 C 100,700 100,750 500,1000" stroke="rgba(255,255,255,0.05)" stroke-width="15" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round"></path>
-                     <path id="timeline-path-fill" d="M 500,0 C 900,250 900,300 500,500 C 100,700 100,750 500,1000" stroke="#FFD600" stroke-width="15" fill="none" vector-effect="non-scaling-stroke" stroke-linecap="round"></path>
+                     <path id="timeline-path-bg" d="M 500,0 C 900,250 900,300 500,500 C 100,700 100,750 500,1000"
+                        stroke="rgba(255,255,255,0.05)" stroke-width="15" fill="none" vector-effect="non-scaling-stroke"
+                        stroke-linecap="round"></path>
+                     <path id="timeline-path-fill" d="M 500,0 C 900,250 900,300 500,500 C 100,700 100,750 500,1000"
+                        stroke="#FFD600" stroke-width="15" fill="none" vector-effect="non-scaling-stroke"
+                        stroke-linecap="round"></path>
                   </svg>
 
                   <!-- Item 1 -->
@@ -806,6 +822,16 @@
 
    <script src="assets/js/page.js"></script>
 
+   <script>
+      let docTitle = document.title;
+      window.addEventListener("blur", () => {
+         docTitle = document.title;
+         document.title = "Hey, over here!👋 - Anugerah";
+      });
+      window.addEventListener("focus", () => {
+         document.title = docTitle;
+      });
+   </script>
 </body>
 
 </html>

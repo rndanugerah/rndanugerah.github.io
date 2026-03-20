@@ -276,7 +276,8 @@ main.touch .main-wrap {
 }
 
 .sticky-nav-right .overview-top,
-.sticky-nav-right .summary-top {
+.sticky-nav-right .summary-top,
+.sticky-nav-right .journey-top {
    cursor: pointer;
    display: flex;
    align-items: center;

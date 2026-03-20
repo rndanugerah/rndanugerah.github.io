@@ -438,10 +438,12 @@ function initPageTransitions() {
       const homeSection = document.querySelector('section#home');
       const overviewSection = document.querySelector('#overview');
       const summarySection = document.querySelector('#summary');
+      const journeySection = document.querySelector('#journey');
 
       const homeLink = document.querySelector('.nav-link-home');
       const overviewLink = document.querySelector('.nav-link-overview');
       const summaryLink = document.querySelector('.nav-link-summary');
+      const journeyLink = document.querySelector('.nav-link-journey');
 
       if (stickyNav && homeSection) {
         const homeRect = homeSection.getBoundingClientRect();
@@ -457,19 +459,28 @@ function initPageTransitions() {
         if (overviewSection && summarySection) {
           const overviewRect = overviewSection.getBoundingClientRect();
           const summaryRect = summarySection.getBoundingClientRect();
+          const journeyRect = journeySection?.getBoundingClientRect();
 
-          if (summaryRect.top <= (window.innerHeight / 2)) {
+          if (journeyRect && journeyRect.top <= (window.innerHeight / 2)) {
+            journeyLink?.classList.add('nav-link-active');
+            summaryLink?.classList.remove('nav-link-active');
+            overviewLink?.classList.remove('nav-link-active');
+            homeLink?.classList.remove('nav-link-active');
+          } else if (summaryRect.top <= (window.innerHeight / 2)) {
             summaryLink?.classList.add('nav-link-active');
+            journeyLink?.classList.remove('nav-link-active');
             overviewLink?.classList.remove('nav-link-active');
             homeLink?.classList.remove('nav-link-active');
           } else if (overviewRect.top <= (window.innerHeight / 2)) {
             overviewLink?.classList.add('nav-link-active');
             summaryLink?.classList.remove('nav-link-active');
+            journeyLink?.classList.remove('nav-link-active');
             homeLink?.classList.remove('nav-link-active');
           } else {
             homeLink?.classList.add('nav-link-active');
             overviewLink?.classList.remove('nav-link-active');
             summaryLink?.classList.remove('nav-link-active');
+            journeyLink?.classList.remove('nav-link-active');
           }
         }
       }
