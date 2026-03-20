@@ -1,12 +1,14 @@
 // timeline.js
 
 function initTimelineAnimation() {
-   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || typeof MotionPathPlugin === 'undefined') return;
+
+   gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
    const timelineContainer = document.querySelector('.timeline-container');
    if(!timelineContainer) return;
 
-   // The line growth
+   // The straight line growth
    gsap.to('.timeline-line-progress', {
       height: '100%',
       ease: 'none',
@@ -18,7 +20,7 @@ function initTimelineAnimation() {
       }
    });
 
-   // The star movement
+   // The star movement along straight line
    gsap.to('.timeline-star-icon', {
       top: '100%',
       ease: 'none',
@@ -30,17 +32,23 @@ function initTimelineAnimation() {
       }
    });
 
-   // Fill nodes
-   const items = document.querySelectorAll('.timeline-item');
-   items.forEach(item => {
-      gsap.to(item, {
+   const pathFill = document.querySelector('#timeline-path-fill');
+   if(pathFill) {
+      // Setup the SVG path trace animation
+      const length = pathFill.getTotalLength();
+      gsap.set(pathFill, { strokeDasharray: length, strokeDashoffset: length });
+
+      gsap.to(pathFill, {
+         strokeDashoffset: 0,
+         ease: 'none',
          scrollTrigger: {
-            trigger: item,
-            start: 'center center',
-            toggleClass: 'active'
+            trigger: '.timeline-container',
+            start: 'top center',
+            end: 'bottom center',
+            scrub: true,
          }
       });
-   });
+   }
 }
 
 // Ensure it initializes when Barba page transition completes, or on direct render.

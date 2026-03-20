@@ -46,10 +46,20 @@
    z-index: 2;
 }
 
+.timeline-svg-curve {
+   position: absolute;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 0; /* Below the straight line */
+   pointer-events: none;
+}
+
 .timeline-star-icon {
    position: absolute;
    left: 50%;
-   top: 0%; /* Will be animated */
+   top: 0%; /* Animated by JS */
    transform: translate(-50%, -50%);
    z-index: 3;
    display: flex;
