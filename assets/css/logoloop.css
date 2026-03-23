@@ -13,8 +13,8 @@
 }
 
 .logoloop--scale-hover {
-  padding-top: calc(var(--logoloop-logoHeight) * 0.1);
-  padding-bottom: calc(var(--logoloop-logoHeight) * 0.1);
+  padding-top: 55px; /* Pushing logos down to give bubble chat more space */
+  padding-bottom: 10px;
 }
 
 .logoloop__track {
@@ -174,4 +174,57 @@
 
 .logoloop--scale-hover .logoloop__item:hover .logo-bw.logo-invert {
   filter: invert(1) grayscale(0%) contrast(100%) brightness(100%) !important;
+}
+.logoloop__item {
+  position: relative;
+}
+
+/* Tooltip Bubble */
+.logoloop__item[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translate(-50%, -10px) scale(0.8);
+  background: #fff;
+  color: #081b29;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+/* Tooltip Arrow */
+.logoloop__item[data-tooltip]::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0) scale(0);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 99;
+}
+
+/* Hover State */
+.logoloop__item:hover[data-tooltip]::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -35px) scale(1);
+}
+
+.logoloop__item:hover[data-tooltip]::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-23px) scale(1);
 }
