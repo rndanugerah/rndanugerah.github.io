@@ -297,8 +297,9 @@ function startTextScrambleLoopH1() {
 function startTextScrambleLoopJobTitle() {
   var tl = gsap.timeline({ repeat: -1 });
   if (document.querySelector("#jobtitle-scramble")) {
-    tl.to("#jobtitle-scramble", { duration: 2.5, scrambleText: { text: "Data Analyst", speed: 0.3, chars: "$#%^!=_)+;{." } }, "<");
-    tl.to("#jobtitle-scramble", { duration: 2.5, scrambleText: { text: "Software Engineer", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 4");
+    tl.to("#jobtitle-scramble", { duration: 2.5, scrambleText: { text: "Software Engineer", speed: 0.3, chars: "$#%^!=_)+;{." } }, "<");
+    tl.to("#jobtitle-scramble", { duration: 2.5, scrambleText: { text: "Data Analyst", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 4");
+    tl.to("#jobtitle-scramble", { duration: 2.5, scrambleText: { text: "System Developer", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
     tl.to("#jobtitle-scramble", { duration: 2.5, scrambleText: { text: "Data Scientist", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
   }
 
@@ -315,8 +316,8 @@ function startTextScrambleLoopJobTitle() {
   if (document.querySelector("#pc-jobtitle-scramble")) {
     tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "as Software Engineer", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 4");
     tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "as Data Analyst", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
+    tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "as System Developer", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
     tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "as Data Scientist", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
-    tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "as Web Developer", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
     tlPc.to("#pc-jobtitle-scramble", { duration: 2.5, scrambleText: { text: "", speed: 0.3, chars: "$#%^!=_)+;{." } }, "< 3.5");
   }
 }
