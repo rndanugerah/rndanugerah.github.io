@@ -162,6 +162,23 @@
    font-size: 1.2rem;
 }
 
+.timeline-title-break {
+   text-align: center;
+   margin-top: 8rem;
+   margin-bottom: 4rem;
+   position: relative;
+   z-index: 10;
+   background: transparent;
+   width: 100%;
+}
+
+.timeline-title-break h3 {
+   background: #1C1D20; /* Matches --color-dark */
+   display: inline-block;
+   padding: 1rem 3rem; /* 1rem gap top/bottom, 3rem side to cover line glow */
+   margin: 0;
+}
+
 /* Specific item structure for spacing alignment */
 .timeline-item:nth-child(odd) .timeline-desc {
    text-align: left;
