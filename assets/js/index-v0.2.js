@@ -147,11 +147,6 @@ function initLoaderHome() {
       autoAlpha: 0
     });
 
-    gsap.to(".load-icon", {
-      duration: 0.5,
-      scale: 1,
-      ease: "Power2.easeInOut"
-    }, "< 0.5");
   }, null, 0);
 
   tl.call(function () {
@@ -577,6 +572,7 @@ function initScript() {
   initTrueFocus();
   initBlurText();
   initCursorFollower();
+  initLoadIconAutoFade();
 }
 
 
@@ -1055,5 +1051,53 @@ function initCursorFollower() {
     
     gsap.set(star, { x: starX, y: starY });
     gsap.set(dot, { x: dotX, y: dotY });
+  });
+}
+
+function initLoadIconAutoFade() {
+  const loadIcon = document.querySelector(".load-icon");
+  const loadText = document.querySelector(".load-icon-text");
+  const loadSvg = loadIcon ? loadIcon.querySelector("svg") : null;
+  const footer = document.querySelector(".footer-contact");
+  const summary = document.querySelector("#summary");
+
+  if (!loadIcon || !loadText || !loadSvg || !footer || !summary) return;
+
+  // 1. Summary Trigger (START) - Trigger as soon as Summary starts appearing
+  ScrollTrigger.create({
+    trigger: summary,
+    start: "top 95%",
+    onEnter: () => {
+      if (gsap.getProperty(loadIcon, "scale") > 0.5) return;
+      loadText.innerText = "START";
+      const tl = gsap.timeline();
+      tl.to(loadIcon, { scale: 1, duration: 0.4, ease: "power2.out" })
+        .to(loadText, { opacity: 1, duration: 0.2 })
+        .to(loadText, { opacity: 0, duration: 0.2, delay: 0.8 })
+        .to(loadSvg, { opacity: 1, duration: 0.2 });
+    },
+    onLeaveBack: () => {
+      gsap.to(loadIcon, { scale: 0, duration: 0.4, ease: "power2.in" });
+      gsap.set([loadText, loadSvg], { opacity: 0 });
+    }
+  });
+
+  // 2. Footer Trigger (END) - Trigger when footer just peeks in
+  ScrollTrigger.create({
+    trigger: footer,
+    start: "top 100%",
+    onEnter: () => {
+      loadText.innerText = "END";
+      const tl = gsap.timeline();
+      tl.to(loadSvg, { opacity: 0, duration: 0.2 })
+        .to(loadText, { opacity: 1, duration: 0.2 })
+        .to(loadIcon, { scale: 0, duration: 0.4, delay: 0.8, ease: "power2.in" });
+    },
+    onLeaveBack: () => {
+      const tl = gsap.timeline();
+      tl.to(loadIcon, { scale: 1, duration: 0.4, ease: "power2.out" })
+        .to(loadText, { opacity: 0, duration: 0.1 })
+        .to(loadSvg, { opacity: 1, duration: 0.2 });
+    }
   });
 }

@@ -1339,6 +1339,25 @@ main.touch .main-wrap {
    fill: var(--color-yellow);
 }
 
+.load-icon-text {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   font-family: var(--font-monospace);
+   font-size: 0.7em;
+   color: var(--color-yellow);
+   white-space: nowrap;
+   opacity: 0;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+}
+
+.load-icon svg {
+   transition: opacity 0.3s ease;
+   opacity: 0;
+}
+
 @keyframes rotateLoad {
    0% {
       transform: rotate(0.0001deg);
