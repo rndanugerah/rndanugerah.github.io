@@ -573,6 +573,7 @@ function initScript() {
   initBlurText();
   initCursorFollower();
   initLoadIconAutoFade();
+  initContactForm();
 }
 
 
@@ -1083,5 +1084,55 @@ function initLoadIconAutoFade() {
     onLeaveBack: () => {
       gsap.to(loadIcon, { scale: 1, opacity: 1, duration: 0.4, ease: "power2.out" });
     }
+  });
+}
+
+function initContactForm() {
+  const form = document.getElementById("contact-form-element");
+  const status = document.getElementById("contact-status");
+  const btn = document.getElementById("contact-submit-btn");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    
+    btn.disabled = true;
+    const originalBtnText = btn.innerText;
+    btn.innerText = "SENDING...";
+    status.innerText = "";
+    status.className = "";
+
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        status.innerHTML = "Thanks! Your message has been sent successfully.";
+        status.className = "success";
+        form.reset();
+        btn.innerText = originalBtnText;
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+          } else {
+            status.innerHTML = "Oops! There was a problem submitting your form";
+          }
+          status.className = "error";
+          btn.innerText = originalBtnText;
+        })
+      }
+      btn.disabled = false;
+    }).catch(error => {
+      status.innerHTML = "Oops! There was a problem submitting your form";
+      status.className = "error";
+      btn.disabled = false;
+      btn.innerText = originalBtnText;
+    });
   });
 }
