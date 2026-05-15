@@ -245,7 +245,7 @@
          <header class="header-overflow-wrap" data-scroll-section>
             <section class="section home-header" id="home">
                <header class="header">
-                  <a href="index.html" class="logo">&copy; Code by Randy v.2026</a>
+                  <a href="#" class="logo" id="deprecated-link">&copy;DEPRECATED WEBSITE - <span id="countdown">14</span> s for switch to new website!</a>
                   <nav class="navbar">
                      <a href="#home" class="active">Home</a>
                      <a href="#about">About</a>
@@ -253,7 +253,7 @@
                   </nav>
                </header>
                <div class="home-content once-in">
-                  <h2 class="topline">This Is&nbsp; </h2>
+                  <h2 class="topline">&nbsp; </h2>
                   <h1 id="h1-scramble">M. Randy Anugerah</h1>
                   <h1>I'm <span id="jobtitle-scramble">Software Engineer</span></h1>
                   <p>I have done projects in multiple domain's - Web Developer, Software Development, Data Analyst, Data
@@ -736,7 +736,7 @@
                         <h3>Data Analyst & System Developer</h3>
                         <h4>PT Ganda Alam Makmur (Full-Time)</h4>
                         <p class="timeline-date">Dec 2025 – Present</p>
-                        <img src="assets/img/gam-logo.png" alt="PT Ganda Alam Makmur Logo" class="timeline-logo">
+                        <img src="assets/img/gam.png" alt="PT Ganda Alam Makmur Logo" class="timeline-logo">
                      </div>
                      <div class="timeline-content-right timeline-desc">
                         <p>PT Ganda Alam Makmur is a major coal mining operation in East Kalimantan, managed and
@@ -768,6 +768,7 @@
                         <h3>Data Analyst and System Developer</h3>
                         <h4>Annaira Home Spa (Part-Time)</h4>
                         <p class="timeline-date">Jan 2023 – Present</p>
+                        <img src="assets/img/annaira.jpg" alt="Annaira Home Spa Logo" class="timeline-logo">
                      </div>
                   </div>
 
@@ -777,7 +778,11 @@
                         <h3>Software Engineer</h3>
                         <h4>Accelbyte X 2K Games (Full-Time)</h4>
                         <p class="timeline-date">Jan 2024 – Nov 2024</p>
-                        <img src="assets/img/ab-logo.png" alt="Accelbyte Logo" class="timeline-logo">
+                        <div class="logo-wrapper">
+                           <img src="assets/img/ab.png" alt="Accelbyte Logo" class="timeline-logo">
+                           <span class="logo-separator">-</span>
+                           <img src="assets/img/2k.png" alt="2K Games Logo" class="timeline-logo">
+                        </div>
                      </div>
                      <div class="timeline-content-right timeline-desc">
                         <p><strong>Partnered with 2K Games</strong>, one of the largest global game publishers.</p>
@@ -807,7 +812,7 @@
                         <h3>Fresh Graduate Development Program (FGDP)</h3>
                         <h4>Accelbyte</h4>
                         <p class="timeline-date">Sep 2023 – Dec 2023</p>
-                        <img src="assets/img/ab-logo.png" alt="Accelbyte Logo" class="timeline-logo">
+                        <img src="assets/img/ab.png" alt="Accelbyte Logo" class="timeline-logo">
                      </div>
                   </div>
 
@@ -986,6 +991,18 @@
       window.addEventListener("focus", () => {
          document.title = docTitle;
       });
+
+      (function() {
+         let timeLeft = 14;
+         const countdownElement = document.getElementById('countdown');
+
+         const timer = setInterval(() => {
+            timeLeft--;
+            if (countdownElement) {
+               countdownElement.textContent = timeLeft;
+            }
+         }, 1000);
+      })();
    </script>
 </body>
 

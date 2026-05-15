@@ -136,8 +136,34 @@
    padding: 4px;
 }
 
+.timeline-item .logo-wrapper .timeline-logo {
+   margin: 0 !important;
+}
+
+.logo-wrapper {
+   display: flex;
+   gap: 0.3rem;
+   align-items: center;
+   margin-top: 1rem;
+}
+
+.timeline-item:nth-child(odd) .logo-wrapper {
+   justify-content: flex-end;
+}
+
+.timeline-item:nth-child(even) .logo-wrapper {
+   justify-content: flex-start;
+}
+
+.logo-separator {
+   font-family: monospace;
+   color: #FFD600;
+   font-weight: bold;
+   font-size: 1.2rem;
+}
+
 /* Specific item structure for spacing alignment */
-.timeline-item:nth-child(add) .timeline-desc {
+.timeline-item:nth-child(odd) .timeline-desc {
    text-align: left;
 }
 .timeline-item:nth-child(odd) .timeline-heading {
