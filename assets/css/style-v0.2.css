@@ -692,12 +692,28 @@ main.touch .main-wrap {
    font-size: .85em;
 }
 
+.social-links-text a {
+   margin-right: 1.5rem;
+   color: var(--color-white);
+   text-transform: uppercase;
+   font-size: 1em;
+   transition: color 0.3s ease;
+}
+
+.social-links-text a:hover {
+   color: var(--color-yellow);
+}
+
+.social-links-text a:last-child {
+   margin-right: 0;
+}
+
 .bottom-footer h5 {
    margin-bottom: 1.5em;
 }
 
 .socials h5 {
-   padding-left: calc(var(--gap-padding) * .5);
+   padding-left: 0;
    margin-bottom: 1em;
 }
 
