@@ -1297,9 +1297,18 @@
          const countdownElement = document.getElementById('countdown');
 
          const timer = setInterval(() => {
-            timeLeft--;
-            if (countdownElement) {
-               countdownElement.textContent = timeLeft;
+            // Pause countdown when tab is inactive
+            if (document.title === "Hey, over here!👋 - Anugerah" || document.hidden) {
+               return; 
+            }
+
+            if (timeLeft > 0) {
+               timeLeft--;
+               if (countdownElement) {
+                  countdownElement.textContent = timeLeft;
+               }
+            } else {
+               clearInterval(timer);
             }
          }, 1000);
       })();
