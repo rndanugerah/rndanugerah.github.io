@@ -3,7 +3,7 @@
    padding: 10vh 0;
    position: relative;
    overflow: hidden;
-   background: var(--color-dark);
+   background: transparent;
 }
 
 .contact-header {

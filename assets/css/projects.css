@@ -3,7 +3,7 @@
 .projects-section {
     position: relative;
     padding: 15vh 0;
-    background: var(--color-dark);
+    background: transparent;
     z-index: 5;
     overflow: hidden;
 }

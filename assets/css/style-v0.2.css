@@ -1552,7 +1552,7 @@ main.touch .main-wrap {
    position: absolute;
    top: -25%;
    left: 0;
-   height: 500%;
+   height: 5000%;
    width: 100%;
    background-image: url("../img/stars-2.svg");
    pointer-events: none;
