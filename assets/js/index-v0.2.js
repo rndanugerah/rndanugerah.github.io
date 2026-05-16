@@ -440,6 +440,8 @@ function initPageTransitions() {
       const overviewLink = document.querySelector('.nav-link-overview');
       const summaryLink = document.querySelector('.nav-link-summary');
       const journeyLink = document.querySelector('.nav-link-journey');
+      const projectsLink = document.querySelector('.nav-link-projects');
+      const contactLink = document.querySelector('.nav-link-contact');
 
       if (stickyNav && homeSection) {
         const homeRect = homeSection.getBoundingClientRect();
@@ -456,27 +458,49 @@ function initPageTransitions() {
           const overviewRect = overviewSection.getBoundingClientRect();
           const summaryRect = summarySection.getBoundingClientRect();
           const journeyRect = journeySection?.getBoundingClientRect();
+          const projectsSection = document.querySelector('#projects');
+          const projectsRect = projectsSection?.getBoundingClientRect();
+          const contactSection = document.querySelector('#contact');
+          const contactRect = contactSection?.getBoundingClientRect();
 
-          if (journeyRect && journeyRect.top <= (window.innerHeight / 2)) {
+          if (contactRect && contactRect.top <= (window.innerHeight / 2)) {
+            contactLink?.classList.add('nav-link-active');
+            projectsLink?.classList.remove('nav-link-active');
+            journeyLink?.classList.remove('nav-link-active');
+            summaryLink?.classList.remove('nav-link-active');
+            overviewLink?.classList.remove('nav-link-active');
+            homeLink?.classList.remove('nav-link-active');
+          } else if (projectsRect && projectsRect.top <= (window.innerHeight / 2)) {
+            projectsLink?.classList.add('nav-link-active');
+            contactLink?.classList.remove('nav-link-active');
+            journeyLink?.classList.remove('nav-link-active');
+            summaryLink?.classList.remove('nav-link-active');
+            overviewLink?.classList.remove('nav-link-active');
+            homeLink?.classList.remove('nav-link-active');
+          } else if (journeyRect && journeyRect.top <= (window.innerHeight / 2)) {
             journeyLink?.classList.add('nav-link-active');
+            projectsLink?.classList.remove('nav-link-active');
             summaryLink?.classList.remove('nav-link-active');
             overviewLink?.classList.remove('nav-link-active');
             homeLink?.classList.remove('nav-link-active');
           } else if (summaryRect.top <= (window.innerHeight / 2)) {
             summaryLink?.classList.add('nav-link-active');
             journeyLink?.classList.remove('nav-link-active');
+            projectsLink?.classList.remove('nav-link-active');
             overviewLink?.classList.remove('nav-link-active');
             homeLink?.classList.remove('nav-link-active');
           } else if (overviewRect.top <= (window.innerHeight / 2)) {
             overviewLink?.classList.add('nav-link-active');
             summaryLink?.classList.remove('nav-link-active');
             journeyLink?.classList.remove('nav-link-active');
+            projectsLink?.classList.remove('nav-link-active');
             homeLink?.classList.remove('nav-link-active');
           } else {
             homeLink?.classList.add('nav-link-active');
             overviewLink?.classList.remove('nav-link-active');
             summaryLink?.classList.remove('nav-link-active');
             journeyLink?.classList.remove('nav-link-active');
+            projectsLink?.classList.remove('nav-link-active');
           }
         }
       }
@@ -610,10 +634,19 @@ function initHamburgerNav() {
         scroll.stop();
       }
     });
-    $('.fixed-nav-back').click(function () {
+    $('.fixed-nav-back, .fixed-nav .btn-link a').click(function () {
       $(".btn-hamburger, .btn-menu").removeClass('active');
       $("main").removeClass('nav-active');
       scroll.start();
+      
+      const target = $(this).attr('href');
+      if (target && target.startsWith('#')) {
+         if (target === '#home') {
+            scroll.scrollTo(0);
+         } else {
+            scroll.scrollTo(target);
+         }
+      }
     });
   });
 }

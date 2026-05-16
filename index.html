@@ -43,6 +43,7 @@
    <link href="assets/css/logoloop.css" rel="stylesheet">
    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
    <link href="assets/css/timeline.css" rel="stylesheet">
+   <link href="assets/css/projects.css" rel="stylesheet">
    <link href="assets/css/contact.css" rel="stylesheet">
 </head>
 
@@ -163,9 +164,37 @@
                <div class="stripe"></div>
                <ul class="links-wrap">
                   <li class="btn btn-link active">
-                     <a href="index.html" class="btn-click magnetic" data-strength="24" data-strength-text="12">
+                     <a href="#home" class="btn-click magnetic" data-strength="24" data-strength-text="12">
                         <span class="btn-text">
-                           <span class="btn-text-inner">Collection</span>
+                           <span class="btn-text-inner">Home</span>
+                        </span>
+                     </a>
+                  </li>
+                  <li class="btn btn-link">
+                     <a href="#overview" class="btn-click magnetic" data-strength="24" data-strength-text="12">
+                        <span class="btn-text">
+                           <span class="btn-text-inner">Overview</span>
+                        </span>
+                     </a>
+                  </li>
+                  <li class="btn btn-link">
+                     <a href="#journey" class="btn-click magnetic" data-strength="24" data-strength-text="12">
+                        <span class="btn-text">
+                           <span class="btn-text-inner">Journey</span>
+                        </span>
+                     </a>
+                  </li>
+                  <li class="btn btn-link">
+                     <a href="#projects" class="btn-click magnetic" data-strength="24" data-strength-text="12">
+                        <span class="btn-text">
+                           <span class="btn-text-inner">Projects</span>
+                        </span>
+                     </a>
+                  </li>
+                  <li class="btn btn-link">
+                     <a href="#contact" class="btn-click magnetic" data-strength="24" data-strength-text="12">
+                        <span class="btn-text">
+                           <span class="btn-text-inner">Contact</span>
                         </span>
                      </a>
                   </li>
@@ -242,6 +271,18 @@
                </a>
             </div>
 
+            <div class="projects-top">
+               <a href="#projects" data-scroll-to class="btn btn-link nav-link-projects">
+                  <div class="btn-click magnetic" data-strength="20" data-strength-text="10">
+                     <span class="btn-text">
+                        <div class="cbd">
+                           <span class="code-by shiny-text">Projects</span>
+                        </div>
+                     </span>
+                  </div>
+               </a>
+            </div>
+
             <div class="contact-top">
                <a href="#contact" data-scroll-to class="btn btn-link nav-link-contact">
                   <div class="btn-click magnetic" data-strength="20" data-strength-text="10">
@@ -260,7 +301,7 @@
          <header class="header-overflow-wrap" data-scroll-section>
             <section class="section home-header" id="home">
                <header class="header">
-                  <a href="#" class="logo" id="deprecated-link">DEPRECATED - <span id="countdown">14</span>s for switch to new website!</a>
+                  <a href="#" class="logo" id="deprecated-link">DEPRECATED ( <span id="countdown">14</span>s for switch to new website! )</a>
                   <nav class="navbar">
                      <a href="#home" class="active">Home</a>
                      <a href="#about">About</a>
@@ -937,6 +978,200 @@
                </div>
             </section>
 
+            <section class="section projects-section theme-dark" id="projects" style="min-height: 100vh;">
+               <div class="projects-header">
+                  <h2 class="projects-bg-text" data-scroll data-scroll-speed="-2" data-scroll-direction="horizontal">WORKS</h2>
+                  <h1 class="projects-title" data-scroll data-scroll-speed="1">SELECTED <span>PROJECTS</span></h1>
+               </div>
+
+               <div class="projects-grid">
+                  <!-- AI PROJECT 1 -->
+                  <div class="project-item" data-scroll data-scroll-speed="1">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-1">
+                        <img src="assets/img/project-ai.png" alt="AI Image Captioning">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="2">
+                        <span class="project-category">AI & Research</span>
+                        <h2 class="project-name">AI Image Captioning</h2>
+                        <p class="project-desc">Advanced research on Image Captioning using VGG16 and Bidirectional LSTM architectures. Achievement: 70%+ accuracy improvement. Published in SINTA 2.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Python</span>
+                           <span class="project-tag">TensorFlow</span>
+                           <span class="project-tag">CNN</span>
+                           <span class="project-tag">LSTM</span>
+                        </div>
+                        <div class="btn-box" style="margin-top: 2rem;">
+                           <a href="https://kinetik.umm.ac.id/index.php/kinetik/article/view/1568" target="_blank" class="btn btn-animated-border">Read Paper</a>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- AI PROJECT 2 -->
+                  <div class="project-item" data-scroll data-scroll-speed="1">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-1.5">
+                        <img src="assets/img/project-cardio.png" alt="CardioSense AI">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="0.5">
+                        <span class="project-category">AI & HealthTech</span>
+                        <h2 class="project-name">CardioSense AI</h2>
+                        <p class="project-desc">Interactive heart disease prediction system leveraging machine learning to provide accurate cardiovascular health assessments.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Python</span>
+                           <span class="project-tag">Streamlit</span>
+                           <span class="project-tag">Machine Learning</span>
+                        </div>
+                        <div class="btn-box" style="margin-top: 2rem;">
+                           <a href="https://cardiosenseai.streamlit.app/" target="_blank" class="btn btn-animated-border">View Website</a>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- AI PROJECT 3 -->
+                  <div class="project-item" data-scroll data-scroll-speed="2">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-0.5">
+                        <img src="assets/img/project-cancer.png" alt="AI Breast Cancer Prediction">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="1.5">
+                        <span class="project-category">AI & Research</span>
+                        <h2 class="project-name">AI Breast Cancer Prediction</h2>
+                        <p class="project-desc">Machine learning model developed for early-stage breast cancer detection using clinical data analysis.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Python</span>
+                           <span class="project-tag">Scikit-Learn</span>
+                           <span class="project-tag">Data Science</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- AI PROJECT 4 -->
+                  <div class="project-item" data-scroll data-scroll-speed="1.2">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-1.2">
+                        <img src="assets/img/project-age-gender.png" alt="AI Age & Gender Prediction">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="1.8">
+                        <span class="project-category">Computer Vision</span>
+                        <h2 class="project-name">AI Age & Gender Prediction</h2>
+                        <p class="project-desc">A deep learning system using Convolutional Neural Networks (CNN) to accurately predict age and gender from facial images.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Python</span>
+                           <span class="project-tag">Keras</span>
+                           <span class="project-tag">CNN</span>
+                           <span class="project-tag">OpenCV</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- BACKEND PROJECT 1 -->
+                  <div class="project-item" data-scroll data-scroll-speed="1">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-1.5">
+                        <img src="assets/img/project-sso.png" alt="2K Games SSO Service">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="0.5">
+                        <span class="project-category">Backend Engineering</span>
+                        <h2 class="project-name">2K Games SSO Service</h2>
+                        <p class="project-desc">Architected the Single Sign-On (SSO) service for 2K Games global infrastructure. Achievement: Optimized latency from 34m to 1m.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Java</span>
+                           <span class="project-tag">Spring Boot</span>
+                           <span class="project-tag">OAuth2</span>
+                           <span class="project-tag">Scalability</span>
+                        </div>
+                        <div class="btn-box" style="margin-top: 2rem;">
+                           <a href="https://portal.2k.com/en/2k/signin?client_id=506fb5c28b2945feb4008d7973a30f3a&lang=en&redirect_uri=https%3A%2F%2Fportal.2k.com%2Fen%2F2k%2Fportal%2Faccount-detail&state=f6fa05bf-287f-4a9f-8579-2f303fd69418" target="_blank" class="btn btn-animated-border">View Website</a>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- BACKEND PROJECT 2 -->
+                  <div class="project-item" data-scroll data-scroll-speed="1.5">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-0.8">
+                        <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000&auto=format&fit=crop" alt="Rails Books Library App">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="1.2">
+                        <span class="project-category">Web Development</span>
+                        <h2 class="project-name">Rails Books Library App</h2>
+                        <p class="project-desc">A comprehensive digital library management system built with robust backend logic and user authentication.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Ruby on Rails</span>
+                           <span class="project-tag">PostgreSQL</span>
+                           <span class="project-tag">MVC</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- BACKEND PROJECT 3 -->
+                  <div class="project-item" data-scroll data-scroll-speed="1.2">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-1.4">
+                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2000&auto=format&fit=crop" alt="Rails Family Catering">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="0.8">
+                        <span class="project-category">Web Development</span>
+                        <h2 class="project-name">Rails Family Catering</h2>
+                        <p class="project-desc">Custom web application for managing catering orders, menus, and customer relations with streamlined workflows.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Ruby on Rails</span>
+                           <span class="project-tag">ActiveRecord</span>
+                           <span class="project-tag">Tailwind CSS</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- DATA PROJECT 1 -->
+                  <div class="project-item" data-scroll data-scroll-speed="2">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-0.5">
+                        <img src="assets/img/project-hse.png" alt="HSE Mining Dashboard">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="1.5">
+                        <span class="project-category">Data Analyst</span>
+                        <h2 class="project-name">HSE-TTI Mining Dashboard</h2>
+                        <p class="project-desc">Centralized safety and operational monitoring system for LX International. Migrated legacy Excel workflows to cloud ecosystems.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Python</span>
+                           <span class="project-tag">Streamlit</span>
+                           <span class="project-tag">Looker Studio</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- DATA PROJECT 2 -->
+                  <div class="project-item" data-scroll data-scroll-speed="1">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-1.2">
+                        <img src="assets/img/Excavator.jpg" alt="Industrial Inspection System">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="1.4">
+                        <span class="project-category">System Developer</span>
+                        <h2 class="project-name">Form Input Inspection System</h2>
+                        <p class="project-desc">Digital commissioning and KPLH system website for streamlining industrial inspection and data gathering processes.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Python</span>
+                           <span class="project-tag">Web Dev</span>
+                           <span class="project-tag">MySQL</span>
+                        </div>
+                     </div>
+                  </div>
+
+                  <!-- DATA PROJECT 3 -->
+                  <div class="project-item" data-scroll data-scroll-speed="1.8">
+                     <div class="project-image-wrap" data-scroll data-scroll-speed="-0.6">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2000&auto=format&fit=crop" alt="Auto Email Reminder">
+                     </div>
+                     <div class="project-info" data-scroll data-scroll-speed="1.6">
+                        <span class="project-category">Automation</span>
+                        <h2 class="project-name">Auto Email Reminder</h2>
+                        <p class="project-desc">Automated workflow system using Google Apps Script to trigger intelligent email notifications based on data criteria.</p>
+                        <div class="project-tags">
+                           <span class="project-tag">Google Apps Script</span>
+                           <span class="project-tag">JavaScript</span>
+                           <span class="project-tag">Automation</span>
+                        </div>
+                        <div class="btn-box" style="margin-top: 2rem;">
+                           <button onclick="openImageModal('assets/img/emailauto.png')" class="btn btn-animated-border">View Image</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
          </header>
 
          <section class="section contact-section theme-dark" id="contact" data-scroll-section>
@@ -1068,7 +1303,43 @@
             }
          }, 1000);
       })();
+
+      // Modal Image Popup Logic
+      function openImageModal(imgSrc) {
+         const modal = document.getElementById('imageModal');
+         const modalImg = document.getElementById('modalImage');
+         if(modal && modalImg) {
+            modalImg.src = imgSrc;
+            modal.classList.add('active');
+            
+            // Try to stop locomotive scroll when modal is open
+            if(window.scroll) window.scroll.stop();
+         }
+      }
+
+      function closeImageModal() {
+         const modal = document.getElementById('imageModal');
+         if(modal) {
+            modal.classList.remove('active');
+            
+            // Resume locomotive scroll
+            if(window.scroll) window.scroll.start();
+         }
+      }
+      
+      // Close modal on outside click
+      document.getElementById('imageModal')?.addEventListener('click', function(e) {
+         if (e.target === this) {
+            closeImageModal();
+         }
+      });
    </script>
+
+   <!-- Fullscreen Image Modal -->
+   <div id="imageModal" class="image-modal">
+      <span class="modal-close" onclick="closeImageModal()">&times;</span>
+      <img class="modal-content" id="modalImage">
+   </div>
 </body>
 
 </html>
